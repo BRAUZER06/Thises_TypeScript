@@ -1,6 +1,4 @@
 import {HeaderAcrion, HeaderState} from '../../types/header'
-const SEARCH_INPUT_VALUE = "SEARCH_INPUT_VALUE";
-const OPEN_INPUT_SEARCH = "OPEN_INPUT_SEARCH";
 
 
 const initState: HeaderState = {
