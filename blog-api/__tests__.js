@@ -1,6 +1,6 @@
 const supertest = require("supertest");
 const { app } = require("./index");
-const assert = require("assert");
+const assert = require("assert") ;
 
 let token = null;
 let postId = null;
@@ -8,6 +8,7 @@ let userId = null;
 let commentId = null;
 let email = `test${Math.round(Math.random() * 10000)}@test.ru`;
 let password = "Qwerty123";
+ 
 
 it("Register", (done) => {
   supertest(app)
