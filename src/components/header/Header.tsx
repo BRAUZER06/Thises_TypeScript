@@ -1,6 +1,6 @@
 import React from "react";
 import s from "./Header.module.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import {
@@ -12,11 +12,14 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 const Header = () => {
+  const navigate = useNavigate();
   const [toggleSearch, setToggleSearch] = React.useState(false);
   const [toggleProfile, setToggleProfile] = React.useState(true);
 
   const [inputValue, setInputValue] = React.useState("");
-  const onClickInputName = () => {};
+  const onClickName = () => {
+    navigate("/");
+  };
   const onClickCreatePost = () => {};
   const onClickExiteProfile = () => {
     setToggleProfile((toggleProfile) => !toggleProfile);
@@ -53,7 +56,7 @@ const Header = () => {
       ) : (
         <div className={s.header_container}>
           <Link className={s.Link} to="/">
-            <div onClick={onClickInputName} className={s.header_container_left}>
+            <div onClick={onClickName} className={s.header_container_left}>
               <p>MEDA BLOG</p>
             </div>
           </Link>
