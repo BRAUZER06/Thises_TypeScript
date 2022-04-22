@@ -3,11 +3,19 @@ import {
   CLICK_TOGGLE_INPUT,
   TOGGLE_MODAL_LOGIN,
 } from "../actionsConstants";
+
+
 interface InitState {
   toggleInput: boolean;
   inputValue: string | null;
   toggleModalLogin: boolean;
 }
+
+interface InputValue {
+  type:"INPUT_VALUE";
+  payload:string
+}
+
 
 const initState: InitState = {
   toggleInput: false,
