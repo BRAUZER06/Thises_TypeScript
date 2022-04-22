@@ -10,36 +10,48 @@ import {
   faXmark,
   faPenToSquare,
 } from "@fortawesome/free-solid-svg-icons";
+import { useSelector } from "react-redux";
+import {
+  headerInputValueAction,
+  headerToggleInputAction,
+  headerToggleLoginAction,
+} from "../../components/redux/actions/headerAction";
+import { useDispatch } from "react-redux";
 
-const Header = () => {
+const Header: React.FC = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [toggleSearch, setToggleSearch] = React.useState(false);
+  const inputValue = useSelector((state: any) => state.header.inputValue);
+  const { toggleInput, toggleModalLogin } = useSelector(
+    (state: any) => state.header
+  );
+  //связать с modal Reg Autho
   const [toggleProfile, setToggleProfile] = React.useState(true);
 
-  const [inputValue, setInputValue] = React.useState("");
   const onClickName = () => {
     navigate("/");
   };
-  const onClickCreatePost = () => {};
+  const onClickCreatePost = () => {
+    //сделать проверку на регистрацию пользователя
+    //авторизация
+  };
   const onClickExiteProfile = () => {
-    setToggleProfile((toggleProfile) => !toggleProfile);
+    //авторизация
   };
   const onClickToggleInput = () => {
-    //временно
-    setToggleSearch((toggleSearch) => !toggleSearch);
+    dispatch(headerToggleInputAction(!toggleInput));
   };
-  const onClickToggleMenuAutoReg = () => {
-    //временно
-    setToggleProfile((toggleProfile) => !toggleProfile);
+  const onClickLoginInProfile = () => {
+    dispatch(headerToggleLoginAction(true));
   };
 
   const onChangeInput = (e: any) => {
-    setInputValue(e.target.value);
+    dispatch(headerInputValueAction(e.target.value));
   };
 
   return (
     <header className={s.header}>
-      {toggleSearch ? (
+      {toggleInput ? (
         <div className={s.header_input}>
           <input
             value={inputValue}
@@ -100,7 +112,7 @@ const Header = () => {
               ) : (
                 <Link className={s.Link} to="/">
                   <div
-                    onClick={onClickToggleMenuAutoReg}
+                    onClick={onClickLoginInProfile}
                     className={
                       (s.header_container_right_icon_block_right, s.icon)
                     }
