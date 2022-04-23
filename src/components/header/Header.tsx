@@ -15,6 +15,8 @@ import {
   headerCheckedInputAction,
   headerCheckedLoginAction,
 } from "../../components/redux/actions/headerAction";
+import { exiteAccountUserAction } from "../redux/actions/userActions";
+
 import { useDispatch } from "react-redux";
 import { useAppSelector } from "../hooks/useAppSelector";
 import { modalCheckedAction } from "../redux/actions/modalActiom";
@@ -40,7 +42,9 @@ const Header: React.FC = () => {
     //авторизация
   };
   const onClickExiteProfile = () => {
+    dispatch(exiteAccountUserAction());
     window.localStorage.clear();
+    navigate('/home')
   };
   const onClickToggleInput = () => {
     dispatch(headerCheckedInputAction(!checkedInput));
@@ -90,7 +94,7 @@ const Header: React.FC = () => {
                 </div>
               </Link>
 
-              {window.localStorage.getItem("token") ? (
+              {token ? (
                 <>
                   <Link className={s.Link} to="/createPost">
                     <div

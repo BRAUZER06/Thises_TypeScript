@@ -1,6 +1,6 @@
 import React from "react";
 import s from "./Nav.module.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -11,8 +11,17 @@ import {
   faGear,
 } from "@fortawesome/free-solid-svg-icons";
 import { useAppSelector } from "../hooks/useAppSelector";
+import { exiteAccountUserAction } from "../redux/actions/userActions";
 
 const Nav = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { token, fullName, createdAt } = useAppSelector(
+    (state) => state.userReducer.user
+  );
+
+  console.log(createdAt);
+  
   const [openSideBar, setOpenSideBar] = React.useState(true);
   const onClickBtnHome = () => {};
   const onClickCloseMenu = () => {};
@@ -21,7 +30,10 @@ const Nav = () => {
   };
   const onClickMyProfile = () => {};
   const onClickCreatePost = () => {};
-  const onClickExiteProfile = () => {};
+  const onClickExiteProfile = () => {
+    dispatch(exiteAccountUserAction());
+    navigate("/home");
+  };
 
   return (
     <div
@@ -44,12 +56,12 @@ const Nav = () => {
               </div>
               <div className={s.container_block_avatar}>
                 <img
-                  src="https://www.meme-arsenal.com/memes/5abed9f3164164ba88734fab701f2b14.jpg"
+                  src="https://avatars.githubusercontent.com/u/71372134?v=4"
                   alt="'"
                 />
               </div>
               <div className={s.container_block_name}>
-                <p>fullName </p>
+                <p>{fullName} </p>
                 <div className={s.container_block_name_icon}>
                   <Link className={s.container_block_name_icon} to="/home">
                     <div
@@ -58,10 +70,10 @@ const Nav = () => {
                       className={s.icon}
                     >
                       <FontAwesomeIcon icon={faHouse} size="lg" />
-                      <span className={s.tooltiptext}> ЫыЫ</span>
+                      <span className={s.tooltiptext}> Home</span>
                     </div>
                   </Link>
-                  {window.localStorage.getItem("userId") ? (
+                  {token && (
                     <Link className={s.container_block_name_icon} to="/profile">
                       <div
                         onClick={onClickMyProfile}
@@ -72,7 +84,7 @@ const Nav = () => {
                         <span className={s.tooltiptext}> Профиль</span>
                       </div>
                     </Link>
-                  ) : null}
+                  )}
 
                   <Link className={s.container_block_name_icon} to="/home">
                     <div style={{ marginRight: "10px" }} className={s.icon}>
@@ -93,7 +105,7 @@ const Nav = () => {
                   </Link>
                   <FontAwesomeIcon icon={faCaretDown} />
                 </div>
-                {window.localStorage.getItem("userId") ? (
+                {token && (
                   <>
                     <div
                       onClick={onClickMyProfile}
@@ -123,26 +135,24 @@ const Nav = () => {
                       <FontAwesomeIcon icon={faCaretDown} />
                     </div>
                   </>
-                ) : null}
+                )}
               </div>
             </div>
             <div className={s.container_block_footer}>
               <div className={s.container_block_footer_data}>
-                {/* 
-                //Тут взять с redux дату
                 <p>
-                  {window.localStorage.getItem("createdAt")
-                    ? `Дата регистрации: ${new Date(
-                        window.localStorage.getItem("createdAt")
-                      ).toLocaleString("ru", {
+                  {createdAt &&
+                    `Дата регистрации: ${new Date(createdAt).toLocaleString(
+                      "ru",
+                      {
                         year: "numeric",
                         month: "long",
                         day: "numeric",
                         hour: "numeric",
                         minute: "numeric",
-                      })}`
-                    : null}
-                </p> */}
+                      }
+                    )}`}
+                </p>
               </div>
               <div
                 onClick={onClickCloseMenu}

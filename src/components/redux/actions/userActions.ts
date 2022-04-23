@@ -1,16 +1,20 @@
 import { instance } from "../../../config/instance";
 import { UserTypes } from "../types/userReducer";
 
-const fetchUserErrorAction = (error: null | string) => {
+export const fetchUserErrorAction = (error: null | string) => {
   return { type: UserTypes.FETCH_USER_ERROR, payload: error };
 };
 
-const fetchUserLoadingAction = () => {
+export const fetchUserLoadingAction = () => {
   return { type: UserTypes.FETCH_USER_LOADING };
 };
 
-const fetchUserSucceesAction = (arr: any) => {
-  return { type: UserTypes.FETCH_USER_SUCCEES, payload: arr };
+export const fetchUserSucceesAction = (obj: any) => {
+  return { type: UserTypes.FETCH_USER_SUCCEES, payload: obj };
+};
+
+export const exiteAccountUserAction = () => {
+  return { type: UserTypes.EXITE_ACCOUNT_USER };
 };
 
 //Регистрация пользователя
@@ -42,8 +46,21 @@ export const fetchAuthUserAction: any = (inputValue: any) => {
         email: inputValue.email,
         password: inputValue.password,
       });
-      dispatch(fetchUserSucceesAction(respons.data));
+      dispatch(fetchInfoUserAction(respons.data._id));
       window.localStorage.setItem("token", respons.data.token);
+    } catch (error) {
+      dispatch(fetchUserErrorAction("Авторизация не удалась"));
+      console.log(error);
+    }
+  };
+};
+
+export const fetchInfoUserAction: any = (id: any) => {
+  return async (dispatch: any) => {
+    try {
+      dispatch(fetchUserLoadingAction());
+      const respons = await instance.get(`users/${id}`);
+      dispatch(fetchUserSucceesAction(respons.data));
     } catch (error) {
       dispatch(fetchUserErrorAction("Авторизация не удалась"));
       console.log(error);

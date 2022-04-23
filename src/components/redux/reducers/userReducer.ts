@@ -1,4 +1,4 @@
-import { Actions, InitState } from "../types/userReducer";
+import { Actions, InitState, UserTypes } from "../types/userReducer";
 
 const initState: InitState = {
   error: null,
@@ -13,12 +13,14 @@ const initState: InitState = {
     updatedAt: "",
     __v: 0,
     token: "",
+    comments: {},
+    posts: {},
   },
 };
 
 export const userReducer = (state = initState, action: Actions) => {
   switch (action.type) {
-    case "FETCH_USER_SUCCEES":
+    case UserTypes.FETCH_USER_SUCCEES:
       //что-то кажлется что это не будет работать
       return {
         ...state,
@@ -27,11 +29,14 @@ export const userReducer = (state = initState, action: Actions) => {
         user: action.payload,
       };
 
-    case "FETCH_USER_ERROR":
+    case UserTypes.FETCH_USER_ERROR:
       return { ...state, error: action.payload, loading: false };
 
-    case "FETCH_USER_LOADING":
+    case UserTypes.FETCH_USER_LOADING:
       return { ...state, error: null, loading: true };
+
+    case UserTypes.EXITE_ACCOUNT_USER:
+      return { ...state, user: {} };
 
     default:
       return state;
