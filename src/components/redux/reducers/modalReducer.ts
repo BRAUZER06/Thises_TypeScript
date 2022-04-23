@@ -1,10 +1,5 @@
-import {
-  MODAL_CHECKED,
-  MODAL_INPUT_VALUE,
-  MODAL_CHECKED_REGIS_AUTHO,
-} from "../actionsConstants";
 
-import { Actions, InitState } from "../types/modalReducer";
+import { Actions, InitState, ModalTypes } from "../types/modalReducer";
 const initState: InitState = {
   modalChecked: false,
   toggleRegisAuth: false,
@@ -17,13 +12,13 @@ const initState: InitState = {
 
 export const modalReducer = (state = initState, action: Actions): InitState => {
   switch (action.type) {
-    case MODAL_CHECKED:
+    case ModalTypes.MODAL_CHECKED:
       return { ...state, modalChecked: action.payload };
 
-    case MODAL_CHECKED_REGIS_AUTHO:
+    case ModalTypes.MODAL_CHECKED_REGIS_AUTHO:
       return { ...state, toggleRegisAuth: action.payload };
 
-    case MODAL_INPUT_VALUE:
+    case ModalTypes.MODAL_INPUT_VALUE:
       //что-то кажлется что это не будет работать
       return {
         ...state,
