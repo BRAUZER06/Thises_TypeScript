@@ -1,9 +1,8 @@
 import {
-  INPUT_VALUE,
-  CLICK_TOGGLE_INPUT,
-  TOGGLE_MODAL_LOGIN,
+  HEADER_INPUT_VALUE,
+  HEADER_CLICK_TOGGLE_INPUT,
+  HEADER_TOGGLE_MODAL_LOGIN,
 } from "../actionsConstants";
-
 
 interface InitState {
   toggleInput: boolean;
@@ -11,11 +10,19 @@ interface InitState {
   toggleModalLogin: boolean;
 }
 
-interface InputValue {
-  type:"INPUT_VALUE";
-  payload:string
+interface InputValueAction {
+  type: "HEADER_INPUT_VALUE";
+  payload: string;
 }
-
+interface ToggleInputAction {
+  type: "HEADER_CLICK_TOGGLE_INPUT";
+  payload: boolean;
+}
+interface ToggleModalAcrion {
+  type: "HEADER_TOGGLE_MODAL_LOGIN";
+  payload: boolean;
+}
+type Actions = InputValueAction | ToggleModalAcrion | ToggleInputAction;
 
 const initState: InitState = {
   toggleInput: false,
@@ -23,15 +30,18 @@ const initState: InitState = {
   toggleModalLogin: false,
 };
 
-export const headerReducer = (state = initState, action: any): InitState => {
+export const headerReducer = (
+  state = initState,
+  action: Actions
+): InitState => {
   switch (action.type) {
-    case CLICK_TOGGLE_INPUT:
-      return { ...state, toggleInput: action.payload };
-
-    case INPUT_VALUE:
+    case HEADER_INPUT_VALUE:
       return { ...state, inputValue: action.payload };
 
-    case TOGGLE_MODAL_LOGIN:
+    case HEADER_CLICK_TOGGLE_INPUT:
+      return { ...state, toggleInput: action.payload };
+
+    case HEADER_TOGGLE_MODAL_LOGIN:
       return { ...state, toggleModalLogin: action.payload };
 
     default:
