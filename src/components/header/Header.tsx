@@ -10,20 +10,20 @@ import {
   faXmark,
   faPenToSquare,
 } from "@fortawesome/free-solid-svg-icons";
-import { useSelector } from "react-redux";
 import {
   headerInputValueAction,
   headerToggleInputAction,
   headerToggleLoginAction,
 } from "../../components/redux/actions/headerAction";
 import { useDispatch } from "react-redux";
+import { useAppSelector } from "../hooks/useAppSelector";
 
 const Header: React.FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const inputValue = useSelector((state: any) => state.header.inputValue);
-  const { toggleInput, toggleModalLogin } = useSelector(
-    (state: any) => state.header
+  const { inputValue } = useAppSelector((state) => state.header);
+  const { toggleInput, toggleModalLogin } = useAppSelector(
+    (state) => state.header
   );
   //связать с modal Reg Autho
   const [toggleProfile, setToggleProfile] = React.useState(true);

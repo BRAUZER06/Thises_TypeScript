@@ -10,6 +10,7 @@ import {
   faHouse,
   faGear,
 } from "@fortawesome/free-solid-svg-icons";
+import { useAppSelector } from "../hooks/useAppSelector";
 
 const Nav = () => {
   const [openSideBar, setOpenSideBar] = React.useState(true);

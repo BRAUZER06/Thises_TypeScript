@@ -1,12 +1,10 @@
 import React from "react";
 import Authorization from "./Authorization";
 import Registration from "./Registration";
+import { useAppSelector } from "../../hooks/useAppSelector";
 
-const LoginContainer:React.FC = () => {
-
-
-  
-  const onChangeInput = (e: any):void => {};
+const LoginContainer: React.FC = () => {
+  const onChangeInput = (e: any) => {};
 
   //закрытие меню
   const closeMenuAutoReg = (e: any) => {};

@@ -4,34 +4,7 @@ import {
   MODAL_CHECKED_REGIS_AUTHO,
 } from "../actionsConstants";
 
-interface InputValue {
-  fullName: string;
-  email: string;
-  password: string;
-  //что-то кажлется что это не будет работать
-  name?: any;
-  value?: any;
-}
-
-interface InitState {
-  modalChecked: boolean;
-  toggleRegisAuth: boolean;
-  inputValue: InputValue;
-}
-
-interface ModalChecked {
-  type: "MODAL_CHECKED";
-  payload: boolean;
-}
-interface ModalInputValueAction {
-  type: "MODAL_INPUT_VALUE";
-  payload: InputValue;
-}
-interface ModalCheckedRegAuthAction {
-  type: "MODAL_CHECKED_REGIS_AUTHO";
-  payload: boolean;
-}
-
+import { Actions, InitState } from "../types/modalReducer";
 const initState: InitState = {
   modalChecked: false,
   toggleRegisAuth: false,
@@ -41,8 +14,6 @@ const initState: InitState = {
     password: "",
   },
 };
-
-type Actions = ModalChecked | ModalInputValueAction | ModalCheckedRegAuthAction;
 
 export const modalReducer = (state = initState, action: Actions): InitState => {
   switch (action.type) {

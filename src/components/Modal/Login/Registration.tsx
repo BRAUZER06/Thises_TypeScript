@@ -5,15 +5,16 @@ import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { useAppSelector } from "../../hooks/useAppSelector";
 
-type Props = {
-  onChangeInput: (e: any) => {};
-  closeMenuAutoReg: (e: any) => {};
-  onClickToggleMenuAutoReg: (e: any) => {};
-  onClickGetForm: (e: any) => {};
+type RegistrationProps = {
+  onChangeInput: (e: any) => void;
+  closeMenuAutoReg: (e: any) => void;
+  onClickToggleMenuAutoReg: (e: any) => void;
+  onClickGetForm: (e: any) => void;
 };
 
-const Registration: React.FC = ({
+const Registration: React.FC<RegistrationProps> = ({
   onChangeInput,
   closeMenuAutoReg,
   onClickToggleMenuAutoReg,

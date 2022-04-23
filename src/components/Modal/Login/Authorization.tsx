@@ -4,8 +4,16 @@ import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { useAppSelector } from "../../hooks/useAppSelector";
 
-const Authorization: React.FC = ({
+interface AuthorizationProps {
+  onChangeInput: (e: any) => void;
+  closeMenuAutoReg: (e: any) => void;
+  onClickToggleMenuAutoReg: (e: any) => void;
+  onClickGetForm: (e: any) => void;
+}
+
+const Authorization: React.FC<AuthorizationProps> = ({
   onChangeInput,
   closeMenuAutoReg,
   onClickToggleMenuAutoReg,

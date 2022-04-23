@@ -3,26 +3,7 @@ import {
   HEADER_CLICK_TOGGLE_INPUT,
   HEADER_TOGGLE_MODAL_LOGIN,
 } from "../actionsConstants";
-
-interface InitState {
-  toggleInput: boolean;
-  inputValue: string | null;
-  toggleModalLogin: boolean;
-}
-
-interface InputValueAction {
-  type: "HEADER_INPUT_VALUE";
-  payload: string;
-}
-interface ToggleInputAction {
-  type: "HEADER_CLICK_TOGGLE_INPUT";
-  payload: boolean;
-}
-interface ToggleModalAcrion {
-  type: "HEADER_TOGGLE_MODAL_LOGIN";
-  payload: boolean;
-}
-type Actions = InputValueAction | ToggleModalAcrion | ToggleInputAction;
+import { Actions, InitState } from "../types/headerReducer";
 
 const initState: InitState = {
   toggleInput: false,
