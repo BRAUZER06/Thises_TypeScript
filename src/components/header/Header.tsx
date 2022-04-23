@@ -12,21 +12,23 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import {
   headerInputValueAction,
-  headerToggleInputAction,
-  headerToggleLoginAction,
+  headerCheckedInputAction,
+  headerCheckedLoginAction,
 } from "../../components/redux/actions/headerAction";
 import { useDispatch } from "react-redux";
 import { useAppSelector } from "../hooks/useAppSelector";
+import { modalCheckedAction } from "../redux/actions/modalActiom";
 
 const Header: React.FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { inputValue } = useAppSelector((state) => state.header);
-  const { toggleInput, toggleModalLogin } = useAppSelector(
+  const { checkedInput, checkedModalLogin } = useAppSelector(
     (state) => state.header
   );
   //связать с modal Reg Autho
-  const [toggleProfile, setToggleProfile] = React.useState(true);
+  //пользователь зарегался 
+  const [checkedProfile, setToggleProfile] = React.useState(false);
 
   const onClickName = () => {
     navigate("/");
@@ -36,13 +38,15 @@ const Header: React.FC = () => {
     //авторизация
   };
   const onClickExiteProfile = () => {
+    window.localStorage.clear();
+    //прокидывать в modal пустую строку
     //авторизация
   };
   const onClickToggleInput = () => {
-    dispatch(headerToggleInputAction(!toggleInput));
+    dispatch(headerCheckedInputAction(!checkedInput));
   };
   const onClickLoginInProfile = () => {
-    dispatch(headerToggleLoginAction(true));
+    dispatch(modalCheckedAction(true));
   };
 
   const onChangeInput = (e: any) => {
@@ -51,7 +55,7 @@ const Header: React.FC = () => {
 
   return (
     <header className={s.header}>
-      {toggleInput ? (
+      {checkedInput ? (
         <div className={s.header_input}>
           <input
             value={inputValue}
@@ -86,7 +90,7 @@ const Header: React.FC = () => {
                 </div>
               </Link>
 
-              {toggleProfile ? (
+              {checkedProfile ? (
                 <>
                   <Link className={s.Link} to="/">
                     <div

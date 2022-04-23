@@ -1,9 +1,9 @@
 import { Actions, InitState, HeaderTypes } from "../types/headerReducer";
 
 const initState: InitState = {
-  toggleInput: false,
+  checkedInput: false,
   inputValue: "",
-  toggleModalLogin: false,
+  checkedModalLogin: false,
 };
 
 export const headerReducer = (
@@ -14,11 +14,11 @@ export const headerReducer = (
     case HeaderTypes.HEADER_INPUT_VALUE:
       return { ...state, inputValue: action.payload };
 
-    case HeaderTypes.HEADER_CLICK_TOGGLE_INPUT:
-      return { ...state, toggleInput: action.payload };
+    case HeaderTypes.HEADER_CLICK_CHECKED_INPUT:
+      return { ...state, checkedInput: action.payload };
 
-    case HeaderTypes.HEADER_TOGGLE_MODAL_LOGIN:
-      return { ...state, toggleModalLogin: action.payload };
+    case HeaderTypes.HEADER_CHECKED_MODAL_LOGIN:
+      return { ...state, checkedModalLogin: action.payload };
 
     default:
       return state;

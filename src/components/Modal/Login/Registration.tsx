@@ -44,7 +44,7 @@ const Registration: React.FC<RegistrationProps> = ({
             <h2>Регистрация</h2>
             <Link className={styles.Link} to="home">
               <FontAwesomeIcon
-                onClick={closeMenuAutoReg}
+                onClick={() => closeMenuAutoReg()}
                 icon={faXmark}
                 className={styles.autorization_div_icon}
               />
@@ -126,13 +126,18 @@ const Registration: React.FC<RegistrationProps> = ({
             <input
               onClick={onClickGetForm}
               name="registration"
-              value="салам алейкум"
+              value="Регистрация"
               className={styles.input_submit}
               type="submit"
               disabled={!isValid}
             />
           </form>
-          <p onClick={onClickToggleMenuAutoReg}>Войти в аккаунт</p>
+          <p
+            onClick={onClickToggleMenuAutoReg}
+            className={styles.autorization_Footer}
+          >
+            Войти в аккаунт
+          </p>
         </div>
       </div>
     </div>

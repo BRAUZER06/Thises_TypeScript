@@ -42,7 +42,7 @@ const Authorization: React.FC<AuthorizationProps> = ({
           <div className={styles.autorization_div}>
             <h2>Вход в аккаунт</h2>
             <FontAwesomeIcon
-              onClick={closeMenuAutoReg}
+              onClick={()=>closeMenuAutoReg()}
               className={styles.autorization_div_icon}
               icon={faXmark}
             />
@@ -98,16 +98,16 @@ const Authorization: React.FC<AuthorizationProps> = ({
             <input
               onClick={onClickGetForm}
               name="authorization"
-              value="ва алейкум ассалам"
+              value="Авторизация"
               className={styles.input_submit}
               type="submit"
               disabled={!isValid}
             />
           </form>
 
-          <p onClick={onClickToggleMenuAutoReg}>
+          <p  onClick={onClickToggleMenuAutoReg} className={styles.autorization_Footer}>
             У Вас еще нет аккаунта? Зарегистрироваться!
-          </p>
+          </p >
         </div>
       </div>
     </div>
