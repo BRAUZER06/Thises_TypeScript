@@ -1,13 +1,13 @@
 import React from "react";
 import Authorization from "./Authorization";
 import Registration from "./Registration";
-import { useAppSelector } from "../../hooks/useAppSelector";
+import { useAppSelector } from "../../../hooks/useAppSelector";
 import { useDispatch } from "react-redux";
 import {
   modalCheckedAction,
   modalCheckedRegistAuthAction,
   // modalInputValueActions,
-} from "../../redux/actions/modalActiom";
+} from "../../../redux/actions/modalActiom";
 
 const LoginContainer: React.FC = () => {
   const dispatch = useDispatch();

@@ -10,8 +10,8 @@ import {
   faHouse,
   faGear,
 } from "@fortawesome/free-solid-svg-icons";
-import { useAppSelector } from "../hooks/useAppSelector";
-import { exiteAccountUserAction } from "../redux/actions/userActions";
+import { useAppSelector } from "../../hooks/useAppSelector";
+import { exiteAccountUserAction } from "../../redux/actions/userActions";
 
 const Nav = () => {
   const navigate = useNavigate();
@@ -21,15 +21,21 @@ const Nav = () => {
   );
 
   console.log(createdAt);
-  
+
   const [openSideBar, setOpenSideBar] = React.useState(true);
-  const onClickBtnHome = () => {};
+  const onClickBtnHome = () => {
+    navigate("/home");
+  };
   const onClickCloseMenu = () => {};
   const onClickToggleMenu = () => {
     setOpenSideBar((openSideBar) => !openSideBar);
   };
-  const onClickMyProfile = () => {};
-  const onClickCreatePost = () => {};
+  const onClickMyProfile = () => {
+    navigate("/MyProfile");
+  };
+  const onClickCreatePost = () => {
+    navigate("/createPost");
+  };
   const onClickExiteProfile = () => {
     dispatch(exiteAccountUserAction());
     navigate("/home");

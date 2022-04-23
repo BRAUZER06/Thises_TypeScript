@@ -1,4 +1,4 @@
-import { instance } from "../../../config/instance";
+import { instance } from "../../config/instance";
 import { UserTypes } from "../types/userReducer";
 
 export const fetchUserErrorAction = (error: null | string) => {

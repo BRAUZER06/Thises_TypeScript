@@ -14,13 +14,13 @@ import {
   headerInputValueAction,
   headerCheckedInputAction,
   headerCheckedLoginAction,
-} from "../../components/redux/actions/headerAction";
-import { exiteAccountUserAction } from "../redux/actions/userActions";
+} from "../../redux/actions/headerAction";
+import { exiteAccountUserAction } from "../../redux/actions/userActions";
 
 import { useDispatch } from "react-redux";
-import { useAppSelector } from "../hooks/useAppSelector";
-import { modalCheckedAction } from "../redux/actions/modalActiom";
-import { userReducer } from "../redux/reducers/userReducer";
+import { useAppSelector } from "../../hooks/useAppSelector";
+import { modalCheckedAction } from "../../redux/actions/modalActiom";
+
 
 const Header: React.FC = () => {
   const dispatch = useDispatch();
@@ -44,7 +44,7 @@ const Header: React.FC = () => {
   const onClickExiteProfile = () => {
     dispatch(exiteAccountUserAction());
     window.localStorage.clear();
-    navigate('/home')
+    navigate("/home");
   };
   const onClickToggleInput = () => {
     dispatch(headerCheckedInputAction(!checkedInput));

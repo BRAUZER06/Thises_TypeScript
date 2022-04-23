@@ -5,8 +5,8 @@ import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass, faXmark } from "@fortawesome/free-solid-svg-icons";
-import { useAppSelector } from "../../hooks/useAppSelector";
-import { fetchRegistUserAction } from "../../redux/actions/userActions";
+import { useAppSelector } from "../../../hooks/useAppSelector";
+import { fetchRegistUserAction } from "../../../redux/actions/userActions";
 type RegistrationProps = {
   closeMenuAutoReg: (e: any) => void;
   onClickToggleMenuAutoReg: (e: any) => void;
