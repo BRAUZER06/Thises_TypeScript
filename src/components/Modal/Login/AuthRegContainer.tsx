@@ -17,15 +17,16 @@ const LoginContainer: React.FC = () => {
   );
 
   React.useEffect(() => {
+    //это не нужно было делать кнш, но лучше подсраховаться )
     if (token) dispatch(modalCheckedAction(false));
   }, [token]);
 
-  //закрытие меню
-  const closeMenuAutoReg = (e: any) => {
+  //Закрывает модальное окно с регистрацией
+  const closeMenuAutoReg = () => {
     dispatch(modalCheckedAction(false));
   };
 
-  //переключатель с Авториз на Регист
+  //переключатель с Авторизации на Регистрацию
   const onClickToggleMenuAutoReg = () => {
     dispatch(modalCheckedRegistAuthAction(!toggleRegisAuth));
   };

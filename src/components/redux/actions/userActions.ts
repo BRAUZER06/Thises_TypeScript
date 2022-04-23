@@ -46,7 +46,8 @@ export const fetchAuthUserAction: any = (inputValue: any) => {
         email: inputValue.email,
         password: inputValue.password,
       });
-      dispatch(fetchInfoUserAction(respons.data._id));
+      dispatch(fetchUserSucceesAction(respons.data));
+      // dispatch(fetchInfoUserAction(respons.data._id));
       window.localStorage.setItem("token", respons.data.token);
     } catch (error) {
       dispatch(fetchUserErrorAction("Авторизация не удалась"));
@@ -55,15 +56,22 @@ export const fetchAuthUserAction: any = (inputValue: any) => {
   };
 };
 
-export const fetchInfoUserAction: any = (id: any) => {
-  return async (dispatch: any) => {
-    try {
-      dispatch(fetchUserLoadingAction());
-      const respons = await instance.get(`users/${id}`);
-      dispatch(fetchUserSucceesAction(respons.data));
-    } catch (error) {
-      dispatch(fetchUserErrorAction("Авторизация не удалась"));
-      console.log(error);
-    }
-  };
-};
+
+//МЫ НЕ ПОЛУЧАЕМ ДАТУ, ЧТОБЫ ПОЛУЧИТЬ НУЖНО ОТПРАВИТЬ ЕЩЕ ОДИН ЗАПРОС
+//С ПОИСКОМ ПОЛЬЗОВАТЕЛЯ
+//При авторизации не получает дату, приходится запрашивать дополнительно данные
+//через отдельный запрос
+
+//Получении информации о пользователе  (также допольнитель получает посты и комментария пользователя)
+// export const fetchInfoUserAction: any = (id: any) => {
+//   return async (dispatch: any) => {
+//     try {
+//       dispatch(fetchUserLoadingAction());
+//       const respons = await instance.get(`users/${id}`);
+//       dispatch(fetchUserSucceesAction(respons.data));
+//     } catch (error) {
+//       dispatch(fetchUserErrorAction("Авторизация не удалась"));
+//       console.log(error);
+//     }
+//   };
+// };
