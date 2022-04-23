@@ -10,24 +10,15 @@ import {
 } from "../../redux/actions/modalActiom";
 
 const LoginContainer: React.FC = () => {
-  const [inputValue, setInputValue] = React.useState({
-    fullName: "",
-    email: "",
-    password: "",
-  });
-
+  const dispatch = useDispatch();
+  const token = useAppSelector((state) => state.userReducer.user.token);
   const { toggleRegisAuth, modalChecked } = useAppSelector(
     (state) => state.modal
   );
 
-  
-
-  const dispatch = useDispatch();
-  const onChangeInput = (e: any) => {
-    const { value, name } = e.target;
-    setInputValue({ ...inputValue, [name]: value });
-    console.log(inputValue);
-  };
+  React.useEffect(() => {
+    if (token) dispatch(modalCheckedAction(false));
+  }, [token]);
 
   //закрытие меню
   const closeMenuAutoReg = (e: any) => {
@@ -39,27 +30,20 @@ const LoginContainer: React.FC = () => {
     dispatch(modalCheckedRegistAuthAction(!toggleRegisAuth));
   };
 
-  //клик на отправку формы
-  const onClickGetForm = (e: any) => {};
-
   return (
     <>
       {modalChecked && (
         <div>
-          {/* Если modalChecked true, показывай Modal'ку, если toggleRegisAuth false, показывай Authori иначе Regist */}
+          {/* Если modalChecked true, показывай Modal'ку, если toggleRegisAuth false, показывай компонент Authori, иначе показывай Regist */}
           {toggleRegisAuth ? (
             <Registration
-              onChangeInput={onChangeInput}
               closeMenuAutoReg={closeMenuAutoReg}
               onClickToggleMenuAutoReg={onClickToggleMenuAutoReg}
-              onClickGetForm={onClickGetForm}
             />
           ) : (
             <Authorization
-              onChangeInput={onChangeInput}
               closeMenuAutoReg={closeMenuAutoReg}
               onClickToggleMenuAutoReg={onClickToggleMenuAutoReg}
-              onClickGetForm={onClickGetForm}
             />
           )}
         </div>

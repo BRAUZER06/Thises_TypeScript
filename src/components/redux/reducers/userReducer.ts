@@ -1,47 +1,37 @@
-import { Actions, ModalTypes } from "../types/modalReducer";
-
-type UserInfo = {
-  fullName: string;
-  username: string;
-  email: string;
-  password: string;
-  _id: string;
-  createdAt: any;
-  updatedAt: any;
-  __v: number;
-  token: string;
-};
-
-interface InitState {
-  error: null | string;
-  loading: boolean;
-  user: UserInfo;
-}
+import { Actions, InitState } from "../types/userReducer";
 
 const initState: InitState = {
   error: null,
   loading: false,
   user: {
-    fullName: '',
-    username: '',
-    email: '',
-    password: '',
-    _id: '',
+    fullName: "",
+    username: "",
+    email: "",
+    password: "",
+    _id: "",
     createdAt: "",
     updatedAt: "",
     __v: 0,
-    token: '',
+    token: "",
   },
 };
 
-export const modalReducer = (state = initState, action: any) => {
+export const userReducer = (state = initState, action: Actions) => {
   switch (action.type) {
-    case "USER_INPUT_VALUE":
+    case "FETCH_USER_SUCCEES":
       //что-то кажлется что это не будет работать
       return {
         ...state,
-        [action.payload.name]: action.payload.value,
+        error: null,
+        loading: false,
+        user: action.payload,
       };
+
+    case "FETCH_USER_ERROR":
+      return { ...state, error: action.payload, loading: false };
+
+    case "FETCH_USER_LOADING":
+      return { ...state, error: null, loading: true };
 
     default:
       return state;

@@ -18,6 +18,7 @@ import {
 import { useDispatch } from "react-redux";
 import { useAppSelector } from "../hooks/useAppSelector";
 import { modalCheckedAction } from "../redux/actions/modalActiom";
+import { userReducer } from "../redux/reducers/userReducer";
 
 const Header: React.FC = () => {
   const dispatch = useDispatch();
@@ -26,9 +27,10 @@ const Header: React.FC = () => {
   const { checkedInput, checkedModalLogin } = useAppSelector(
     (state) => state.header
   );
-  //связать с modal Reg Autho
-  //пользователь зарегался 
-  const [checkedProfile, setToggleProfile] = React.useState(false);
+  const { token } = useAppSelector((state) => state.userReducer.user);
+
+  const { user } = useAppSelector((state) => state.userReducer);
+  console.log(user);
 
   const onClickName = () => {
     navigate("/");
@@ -39,8 +41,6 @@ const Header: React.FC = () => {
   };
   const onClickExiteProfile = () => {
     window.localStorage.clear();
-    //прокидывать в modal пустую строку
-    //авторизация
   };
   const onClickToggleInput = () => {
     dispatch(headerCheckedInputAction(!checkedInput));
@@ -90,9 +90,9 @@ const Header: React.FC = () => {
                 </div>
               </Link>
 
-              {checkedProfile ? (
+              {window.localStorage.getItem("token") ? (
                 <>
-                  <Link className={s.Link} to="/">
+                  <Link className={s.Link} to="/createPost">
                     <div
                       onClick={onClickCreatePost}
                       style={{ marginRight: "10px" }}

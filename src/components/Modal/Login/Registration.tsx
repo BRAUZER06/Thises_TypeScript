@@ -6,22 +6,28 @@ import { useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { useAppSelector } from "../../hooks/useAppSelector";
-
+import { fetchRegistUserAction } from "../../redux/actions/userActions";
 type RegistrationProps = {
-  onChangeInput: (e: any) => void;
   closeMenuAutoReg: (e: any) => void;
   onClickToggleMenuAutoReg: (e: any) => void;
-  onClickGetForm: (e: any) => void;
 };
 
 const Registration: React.FC<RegistrationProps> = ({
-  onChangeInput,
   closeMenuAutoReg,
   onClickToggleMenuAutoReg,
-  onClickGetForm,
 }: any) => {
+  const [inputValue, setInputValue] = React.useState({});
   const label = { inputProps: { "aria-label": "Switch demo" } };
   const dispatch = useDispatch();
+
+  const onChangeInput = (e: any) => {
+    const { value, name } = e.target;
+    setInputValue({ ...inputValue, [name]: value });
+  };
+
+  const onClickGetFormRegis = () => {
+    dispatch(fetchRegistUserAction(inputValue));
+  };
 
   //React-Hook-Form
   const {
@@ -124,7 +130,7 @@ const Registration: React.FC<RegistrationProps> = ({
             </div>
 
             <input
-              onClick={onClickGetForm}
+              onClick={onClickGetFormRegis}
               name="registration"
               value="Регистрация"
               className={styles.input_submit}

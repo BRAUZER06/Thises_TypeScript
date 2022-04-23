@@ -1,8 +1,3 @@
-//HEADER ACTIONS
-export const HEADER_INPUT_VALUE = "HEADER_INPUT_VALUE";
-export const HEADER_CLICK_CHECKED_INPUT = "HEADER_CLICK_CHECKED_INPUT";
-export const HEADER_CHECKED_MODAL_LOGIN = "HEADER_CHECKED_MODAL_LOGIN";
-
 export enum HeaderTypes {
   HEADER_INPUT_VALUE = "HEADER_INPUT_VALUE",
   HEADER_CLICK_CHECKED_INPUT = "HEADER_CLICK_CHECKED_INPUT",
@@ -27,4 +22,7 @@ interface CheckedModalAcrion {
   type: HeaderTypes.HEADER_CHECKED_MODAL_LOGIN;
   payload: boolean;
 }
-export type Actions = InputValueAction | CheckedModalAcrion | CheckedInputAction;
+export type Actions =
+  | InputValueAction
+  | CheckedModalAcrion
+  | CheckedInputAction;

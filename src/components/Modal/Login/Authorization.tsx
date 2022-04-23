@@ -5,22 +5,28 @@ import { useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { useAppSelector } from "../../hooks/useAppSelector";
-
+import { fetchAuthUserAction } from "../../redux/actions/userActions";
 interface AuthorizationProps {
-  onChangeInput: (e: any) => void;
   closeMenuAutoReg: (e: any) => void;
   onClickToggleMenuAutoReg: (e: any) => void;
-  onClickGetForm: (e: any) => void;
 }
 
 const Authorization: React.FC<AuthorizationProps> = ({
-  onChangeInput,
   closeMenuAutoReg,
   onClickToggleMenuAutoReg,
-  onClickGetForm,
 }: any) => {
+  const [inputValue, setInputValue] = React.useState({});
   const label = { inputProps: { "aria-label": "Switch demo" } };
   const dispatch = useDispatch();
+
+  const onChangeInput = (e: any) => {
+    const { value, name } = e.target;
+    setInputValue({ ...inputValue, [name]: value });
+  };
+
+  const onClickGetFormAuth = () => {
+    dispatch(fetchAuthUserAction(inputValue));
+  };
 
   //React-Hook-Form
   const {
@@ -42,7 +48,7 @@ const Authorization: React.FC<AuthorizationProps> = ({
           <div className={styles.autorization_div}>
             <h2>Вход в аккаунт</h2>
             <FontAwesomeIcon
-              onClick={()=>closeMenuAutoReg()}
+              onClick={() => closeMenuAutoReg()}
               className={styles.autorization_div_icon}
               icon={faXmark}
             />
@@ -96,7 +102,7 @@ const Authorization: React.FC<AuthorizationProps> = ({
             </div>
 
             <input
-              onClick={onClickGetForm}
+              onClick={onClickGetFormAuth}
               name="authorization"
               value="Авторизация"
               className={styles.input_submit}
@@ -105,9 +111,12 @@ const Authorization: React.FC<AuthorizationProps> = ({
             />
           </form>
 
-          <p  onClick={onClickToggleMenuAutoReg} className={styles.autorization_Footer}>
+          <p
+            onClick={onClickToggleMenuAutoReg}
+            className={styles.autorization_Footer}
+          >
             У Вас еще нет аккаунта? Зарегистрироваться!
-          </p >
+          </p>
         </div>
       </div>
     </div>
