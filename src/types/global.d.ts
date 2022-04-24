@@ -27,4 +27,7 @@ declare module "./SectionInfo.module.scss" {
   const styles: { readonly [key: string]: string };
   export default styles;
 }
-
+declare module "./SectionCreatePost.module.scss" {
+  const styles: { readonly [key: string]: string };
+  export default styles;
+}

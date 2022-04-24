@@ -18,7 +18,6 @@ export const fetchAllPostsAction: any = () => {
       dispatch(fetchPostsLoadingAction());
       const respons = await instance.get("posts");
       dispatch(fetchPostsSecceesAction(respons.data.items));
-      console.log(respons.data.items);
     } catch (error) {
       dispatch(fetchPostsErrorAction("Не удалось получить посты"));
       console.log(error);

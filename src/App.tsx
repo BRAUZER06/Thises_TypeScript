@@ -6,6 +6,7 @@ import Nav from "./components/Nav/Nav";
 import AuthRegContainer from "./components/Modal/Login/AuthRegContainer";
 import SectionAllPosts from "./pages/SectionAllPosts/SectionAllPosts";
 import SectionInfo from "./pages/SectionInfo/SectionInfo";
+import SectionCreatePost from "./pages/SectionCreatePost/SectionCreatePost";
 
 function App() {
   return (
@@ -19,7 +20,18 @@ function App() {
             path="/"
             element={
               <>
-                <SectionInfo /><SectionAllPosts />
+                <SectionInfo />
+                <SectionAllPosts />
+              </>
+            }
+          />
+
+          <Route
+            path="/createPost"
+            element={
+              <>
+                <SectionCreatePost />
+                <SectionAllPosts />
               </>
             }
           />
