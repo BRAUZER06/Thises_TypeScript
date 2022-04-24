@@ -197,15 +197,14 @@
 .icon:hover > span {
   visibility: visible;
 }
-
-@media (max-width: 1920px) {
-  .container {
-    position: relative;
-  }
-}
-
 //react-router-doom
 .Link {
   text-decoration: none;
   color: white;
+}
+
+@media (max-width: 1450px) {
+  // .container {
+  //   position: relative;
+  // }
 }

@@ -23,11 +23,15 @@ declare module "./SectionAllPosts.module.scss" {
   const styles: { readonly [key: string]: string };
   export default styles;
 }
-declare module "./SectionInfo.module.scss" {
+declare module "./SectionMyInfo.module.scss" {
   const styles: { readonly [key: string]: string };
   export default styles;
 }
 declare module "./SectionCreatePost.module.scss" {
+  const styles: { readonly [key: string]: string };
+  export default styles;
+}
+declare module "./SectionCechkPost.module.scss" {
   const styles: { readonly [key: string]: string };
   export default styles;
 }

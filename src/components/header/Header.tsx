@@ -81,7 +81,7 @@ const Header: React.FC = () => {
 
           <div className={s.header_container_right}>
             <div className={s.header_container_right_icon_block_left}>
-              <Link className={s.Link} to="/">
+              <Link className={s.Link} to="#">
                 <div
                   onClick={onClickToggleInput}
                   style={{ marginRight: "15px" }}
@@ -116,7 +116,7 @@ const Header: React.FC = () => {
                   </Link>
                 </>
               ) : (
-                <Link className={s.Link} to="/">
+                <Link className={s.Link} to="#">
                   <div
                     onClick={onClickLoginInProfile}
                     className={

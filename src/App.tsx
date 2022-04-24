@@ -5,8 +5,9 @@ import Header from "./components/Header/Header";
 import Nav from "./components/Nav/Nav";
 import AuthRegContainer from "./components/Modal/Login/AuthRegContainer";
 import SectionAllPosts from "./pages/SectionAllPosts/SectionAllPosts";
-import SectionInfo from "./pages/SectionInfo/SectionInfo";
+import SectionInfo from "./pages/SectionMyInfo/SectionMyInfo";
 import SectionCreatePost from "./pages/SectionCreatePost/SectionCreatePost";
+import SectionCechkPost from "./pages/SectionCechkPost/SectionCechkPost";
 
 function App() {
   return (
@@ -31,6 +32,16 @@ function App() {
             element={
               <>
                 <SectionCreatePost />
+                <SectionAllPosts />
+              </>
+            }
+          />
+
+          <Route
+            path="/checkPost/:id"
+            element={
+              <>
+                <SectionCechkPost />
                 <SectionAllPosts />
               </>
             }

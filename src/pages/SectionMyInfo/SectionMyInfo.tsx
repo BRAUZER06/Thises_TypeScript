@@ -1,5 +1,4 @@
-import React from "react";
-import styles from "./SectionInfo.module.scss";
+import styles from "./SectionMyInfo.module.scss";
 
 const SectionInfo = () => {
   return (
@@ -32,7 +31,7 @@ const SectionInfo = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default SectionInfo;
