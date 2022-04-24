@@ -21,7 +21,6 @@ import { useDispatch } from "react-redux";
 import { useAppSelector } from "../../hooks/useAppSelector";
 import { modalCheckedAction } from "../../redux/ducks/modal/actionCreators";
 
-
 const Header: React.FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -32,7 +31,6 @@ const Header: React.FC = () => {
   const { token } = useAppSelector((state) => state.userReducer.user);
 
   const { user } = useAppSelector((state) => state.userReducer);
-  console.log(user);
 
   const onClickName = () => {
     navigate("/");

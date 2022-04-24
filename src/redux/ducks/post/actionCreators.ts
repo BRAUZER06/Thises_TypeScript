@@ -7,8 +7,8 @@ const fetchPostsLoadingAction = () => {
 const fetchPostsErrorAction = (error: any) => {
   return { type: PostlTypes.FETCH_POST_ERROR, payload: error };
 };
-const fetchPostsSecceesAction = (arr: any) => {
-  return { type: PostlTypes.FETCH_POST_SECCEES, payload: arr };
+const fetchPostsSecceesAction = (obj: any) => {
+  return { type: PostlTypes.FETCH_POST_SECCEES, payload: obj };
 };
 
 //получение всех постов (GET)
@@ -17,7 +17,8 @@ export const fetchAllPostsAction: any = () => {
     try {
       dispatch(fetchPostsLoadingAction());
       const respons = await instance.get("posts");
-      dispatch(fetchPostsSecceesAction(respons.data));
+      dispatch(fetchPostsSecceesAction(respons.data.items));
+      console.log(respons.data.items);
     } catch (error) {
       dispatch(fetchPostsErrorAction("Не удалось получить посты"));
       console.log(error);
@@ -79,7 +80,7 @@ export const deletedPostAction: any = (idPost: any) => {
   return async (dispatch: any) => {
     try {
       dispatch(fetchPostsLoadingAction());
-      await instance.patch(`posts/${idPost}`);
+      await instance.delete(`posts/${idPost}`);
       dispatch(fetchAllPostsAction());
     } catch (error) {
       dispatch(fetchPostsErrorAction("Ошибка при удалении поста "));

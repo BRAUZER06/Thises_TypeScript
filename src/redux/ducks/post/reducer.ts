@@ -3,27 +3,30 @@ import { Actions, InitState, PostlTypes } from "./types";
 const initState: InitState = {
   error: null,
   loading: false,
-  posts: {
-    _id: "",
-    title: "",
-    text: "",
-    views: 0,
-    user: {
-      _id: "",
-      fullName: "",
-      email: "",
-      password: "",
+  posts: [
+    {
       createdAt: "",
+      description: "",
+      photoUrl: "",
+      text: "",
+      title: "",
       updatedAt: "",
+      user: {
+        createdAt: "",
+        email: "",
+        fullName: "",
+        updatedAt: "",
+        __v: 0,
+        _id: "",
+      },
+      views: 0,
       __v: 0,
+      _id: "",
     },
-    createdAt: "",
-    updatedAt: "",
-    __v: 0,
-  },
+  ],
 };
 
-export const modalReducer = (state = initState, action: Actions): InitState => {
+export const postlReducer = (state = initState, action: Actions): InitState => {
   switch (action.type) {
     case PostlTypes.FETCH_POST_LOADING:
       return { ...state, error: null, loading: true };
@@ -31,8 +34,15 @@ export const modalReducer = (state = initState, action: Actions): InitState => {
     case PostlTypes.FETCH_POST_ERROR:
       return { ...state, loading: false, error: action.payload };
 
-      //он тут получает и объекты и массив
+    //он тут получает и объекты и массив
     case PostlTypes.FETCH_POST_SECCEES:
-      return { ...state, posts: action.payload };
+      return {
+        ...state,
+        loading: false,
+        error: null,
+        posts: action.payload,
+      };
+    default:
+      return state;
   }
 };

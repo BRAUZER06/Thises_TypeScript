@@ -3,9 +3,6 @@
 .container {
   width: 620px;
   box-sizing: border-box;
-  &_Link {
-    text-decoration: none;
-  }
 
   .content {
     align-items: center;
@@ -33,6 +30,7 @@
   &_div {
     margin-right: 40px;
     &_h2 {
+      cursor: pointer;
       max-width: 560px;
       font-family: Nunito;
       font-style: normal;
@@ -94,6 +92,7 @@
 
 //icon
 .icon_color_trash {
+  cursor: pointer;
   font-size: 1.3em;
   color: rgb(65, 63, 63);
   padding: 5px 15px;
@@ -114,4 +113,8 @@
   &:hover {
     color: red;
   }
+}
+//react-router
+.Link {
+  text-decoration: none;
 }

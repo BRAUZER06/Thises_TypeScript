@@ -20,7 +20,7 @@ const Nav = () => {
     (state) => state.userReducer.user
   );
 
-  console.log(createdAt);
+  console.log("доделать Дату", createdAt);
 
   const [openSideBar, setOpenSideBar] = React.useState(true);
   const onClickBtnHome = () => {

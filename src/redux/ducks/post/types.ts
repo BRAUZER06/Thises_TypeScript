@@ -13,32 +13,33 @@ interface PostError {
 }
 interface PostSeccees {
   type: PostlTypes.FETCH_POST_SECCEES;
-  payload:any
+  payload: any;
 }
 
 interface Post {
-  _id?: string;
-  title?: string;
+  createdAt?: string;
+  description?: string;
+  photoUrl?: string;
   text?: string;
-  views?: number;
-  user?: {
-    _id?: string;
-    fullName?: string;
+  title?: string;
+  updatedAt?: string;
+  user: {
+    createdAt?: string;
     email?: string;
-    password?: string;
-    createdAt?: any;
-    updatedAt?: any;
-    __v?: number;
+    fullName?: string;
+    updatedAt?: string;
+    __v: 0;
+    _id?: string;
   };
-  createdAt?: any;
-  updatedAt?: any;
-  __v?: number;
+  views: 0;
+  __v: 0;
+  _id?: string;
 }
 
 export interface InitState {
   error: string | null;
   loading: boolean;
-  posts: Post;
+  posts: any;
 }
 
 export type Actions = PostLoading | PostError | PostSeccees;
