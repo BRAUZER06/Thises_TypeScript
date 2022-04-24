@@ -1,4 +1,4 @@
-import { ModalTypes } from "../types/modalReducer";
+import { ModalTypes } from "./types";
 
 export const modalCheckedAction = (checked: boolean) => {
   return { type: ModalTypes.MODAL_CHECKED, payload: checked };

@@ -7,7 +7,7 @@ import {
   modalCheckedAction,
   modalCheckedRegistAuthAction,
   // modalInputValueActions,
-} from "../../../redux/actions/modalActiom";
+} from "../../../redux/ducks/modal/actionCreators";
 
 const LoginContainer: React.FC = () => {
   const dispatch = useDispatch();

@@ -1,4 +1,4 @@
-import { Actions, InitState, HeaderTypes } from "../types/headerReducer";
+import { Actions, InitState, HeaderTypes } from "./types";
 
 const initState: InitState = {
   checkedInput: false,

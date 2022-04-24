@@ -1,4 +1,4 @@
-import { Actions, InitState, UserTypes } from "../types/userReducer";
+import { Actions, InitState, UserTypes } from "./types";
 
 const initState: InitState = {
   error: null,

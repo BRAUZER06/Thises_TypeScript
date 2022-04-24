@@ -11,7 +11,7 @@ import {
   faGear,
 } from "@fortawesome/free-solid-svg-icons";
 import { useAppSelector } from "../../hooks/useAppSelector";
-import { exiteAccountUserAction } from "../../redux/actions/userActions";
+import { exiteAccountUserAction } from "../../redux/ducks/user/actionCreators";
 
 const Nav = () => {
   const navigate = useNavigate();

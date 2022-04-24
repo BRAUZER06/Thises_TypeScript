@@ -1,5 +1,5 @@
-import { instance } from "../../config/instance";
-import { UserTypes } from "../types/userReducer";
+import { instance } from "../../../config/instance";
+import { UserTypes } from "./types";
 
 export const fetchUserErrorAction = (error: null | string) => {
   return { type: UserTypes.FETCH_USER_ERROR, payload: error };
@@ -55,7 +55,6 @@ export const fetchAuthUserAction: any = (inputValue: any) => {
     }
   };
 };
-
 
 //МЫ НЕ ПОЛУЧАЕМ ДАТУ, ЧТОБЫ ПОЛУЧИТЬ НУЖНО ОТПРАВИТЬ ЕЩЕ ОДИН ЗАПРОС
 //С ПОИСКОМ ПОЛЬЗОВАТЕЛЯ

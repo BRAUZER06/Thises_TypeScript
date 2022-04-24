@@ -1,4 +1,4 @@
-import { Actions, InitState, ModalTypes } from "../types/modalReducer";
+import { Actions, InitState, ModalTypes } from "./types";
 const initState: InitState = {
   modalChecked: false,
   toggleRegisAuth: false,

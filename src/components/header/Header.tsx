@@ -14,12 +14,12 @@ import {
   headerInputValueAction,
   headerCheckedInputAction,
   headerCheckedLoginAction,
-} from "../../redux/actions/headerAction";
-import { exiteAccountUserAction } from "../../redux/actions/userActions";
+} from "../../redux/ducks/header/actionCreators";
+import { exiteAccountUserAction } from "../../redux/ducks/user/actionCreators";
 
 import { useDispatch } from "react-redux";
 import { useAppSelector } from "../../hooks/useAppSelector";
-import { modalCheckedAction } from "../../redux/actions/modalActiom";
+import { modalCheckedAction } from "../../redux/ducks/modal/actionCreators";
 
 
 const Header: React.FC = () => {

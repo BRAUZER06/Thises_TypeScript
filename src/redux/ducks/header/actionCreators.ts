@@ -1,4 +1,4 @@
-import { HeaderTypes } from "../types/headerReducer";
+import { HeaderTypes } from "./types";
 
 export const headerInputValueAction = (value: string | null) => {
   return { type: HeaderTypes.HEADER_INPUT_VALUE, payload: value };
