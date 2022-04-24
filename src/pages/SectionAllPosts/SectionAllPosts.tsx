@@ -21,7 +21,18 @@ const SectionAllPosts = () => {
   );
   const [filterInputValue]=React.useState([{_id:1,title:2,description:3,user:'1'}])
 
+
+
+
+
   const removeMyPostClickBtn = async () => {};
+
+
+
+React.useEffect(()=>{
+  
+},[])
+
 
   return (
     <div>
