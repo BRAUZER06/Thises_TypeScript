@@ -6,8 +6,10 @@ import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { instance } from "../../config/instance";
 import { Post } from "../../types/post";
+import { useAppSelector } from "../../hooks/useAppSelector";
 
 const SectionCechkPost = () => {
+  const posts = useAppSelector(state=>state.postReducer.posts)
   const { id } = useParams();
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const [noImges, setNoImages] = React.useState<boolean>(false);
@@ -49,6 +51,8 @@ const SectionCechkPost = () => {
       _id: "",
     },
   ]);
+  console.log(posts);
+  
 
   console.log("useParams", id);
 

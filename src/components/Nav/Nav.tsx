@@ -16,11 +16,11 @@ import { exiteAccountUserAction } from "../../redux/ducks/user/actionCreators";
 const Nav = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { token, fullName, createdAt } = useAppSelector(
+  const { fullName, createdAt } = useAppSelector(
     (state) => state.userReducer.user
   );
 
-  console.log("доделать Дату", createdAt);
+  const userId = useAppSelector((state) => state.userReducer.user._id);
 
   const [openSideBar, setOpenSideBar] = React.useState(true);
   const onClickBtnHome = () => {
@@ -79,7 +79,7 @@ const Nav = () => {
                       <span className={s.tooltiptext}> Home</span>
                     </div>
                   </Link>
-                  {token && (
+                  {userId && (
                     <Link className={s.container_block_name_icon} to="/profile">
                       <div
                         onClick={onClickMyProfile}
@@ -111,7 +111,7 @@ const Nav = () => {
                   </Link>
                   <FontAwesomeIcon icon={faCaretDown} />
                 </div>
-                {token && (
+                {userId && (
                   <>
                     <div
                       onClick={onClickMyProfile}

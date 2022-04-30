@@ -28,9 +28,11 @@ const Header: React.FC = () => {
   const { checkedInput, checkedModalLogin } = useAppSelector(
     (state) => state.header
   );
-  const { token } = useAppSelector((state) => state.userReducer.user);
+  const  userId  = useAppSelector((state) => state.userReducer.user._id);
 
-  const { user } = useAppSelector((state) => state.userReducer);
+
+  
+
 
   const onClickName = () => {
     navigate("/");
@@ -92,7 +94,7 @@ const Header: React.FC = () => {
                 </div>
               </Link>
 
-              {token ? (
+              {userId ? (
                 <>
                   <Link className={s.Link} to="/createPost">
                     <div

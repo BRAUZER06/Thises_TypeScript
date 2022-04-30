@@ -1,18 +1,34 @@
 export enum PostlTypes {
-  FETCH_POST_LOADING = "FETCH_POST_LOADING",
-  FETCH_POST_ERROR = "FETCH_POST_ERROR",
-  FETCH_POST_SECCEES = "FETCH_POST_SECCEES",
+  FETCH_ALL_POSTS_LOADING = "FETCH_POST_LOADING",
+  FETCH_ALL_POSTS_ERROR = "FETCH_POST_ERROR",
+  FETCH_ALL_POSTS_SECCEES = "FETCH_POST_SECCEES",
+
+  FETCH_ONE_POST_LOADING = "FETCH_ONE_POST_LOADING",
+  FETCH_ONE_POST_ERROR = "FETCH_ONE_POST_ERROR",
+  FETCH_ONE_POST_SECCEES = "FETCH_ONE_POST_SECCEES",
 }
 
-interface PostLoading {
-  type: PostlTypes.FETCH_POST_LOADING;
+interface PostsAllLoading {
+  type: PostlTypes.FETCH_ALL_POSTS_LOADING;
 }
-interface PostError {
-  type: PostlTypes.FETCH_POST_ERROR;
+interface PostsAllError {
+  type: PostlTypes.FETCH_ALL_POSTS_ERROR;
   payload: string;
 }
-interface PostSeccees {
-  type: PostlTypes.FETCH_POST_SECCEES;
+interface PostsAllSeccees {
+  type: PostlTypes.FETCH_ALL_POSTS_SECCEES;
+  payload: any;
+}
+
+interface PostOneLoading {
+  type: PostlTypes.FETCH_ONE_POST_LOADING;
+}
+interface PostOneError {
+  type: PostlTypes.FETCH_ONE_POST_ERROR;
+  payload: string;
+}
+interface PostOneSeccees {
+  type: PostlTypes.FETCH_ONE_POST_SECCEES;
   payload: any;
 }
 
@@ -40,6 +56,17 @@ export interface InitState {
   error: string | null;
   loading: boolean;
   posts: Post[];
+  checkOnePost: {
+    error: string | null;
+    loading: boolean;
+    post: Post;
+  };
 }
 
-export type Actions = PostLoading | PostError | PostSeccees;
+export type Actions =
+  | PostsAllLoading
+  | PostsAllError
+  | PostsAllSeccees
+  | PostOneLoading
+  | PostOneError
+  | PostOneSeccees;

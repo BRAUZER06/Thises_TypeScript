@@ -5,7 +5,6 @@ import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass, faXmark } from "@fortawesome/free-solid-svg-icons";
-import { useAppSelector } from "../../../hooks/useAppSelector";
 import { fetchRegistUserAction } from "../../../redux/ducks/user/actionCreators";
 type RegistrationProps = {
   closeMenuAutoReg: (e: any) => void;
@@ -48,7 +47,7 @@ const Registration: React.FC<RegistrationProps> = ({
         <div className={styles.autorization}>
           <div className={styles.autorization_div}>
             <h2>Регистрация</h2>
-            <Link className={styles.Link} to="home">
+            <Link className={styles.Link} to="/">
               <FontAwesomeIcon
                 onClick={() => closeMenuAutoReg()}
                 icon={faXmark}

@@ -1,39 +1,63 @@
 import { instance } from "../../../config/instance";
 import { PostlTypes } from "./types";
 
-const fetchPostsLoadingAction = () => {
-  return { type: PostlTypes.FETCH_POST_LOADING };
+const fetchAllPostsLoadingAction = () => {
+  return { type: PostlTypes.FETCH_ALL_POSTS_LOADING };
 };
-const fetchPostsErrorAction = (error: any) => {
-  return { type: PostlTypes.FETCH_POST_ERROR, payload: error };
+const fetchAllPostsErrorAction = (error: any) => {
+  return { type: PostlTypes.FETCH_ALL_POSTS_ERROR, payload: error };
 };
-const fetchPostsSecceesAction = (obj: any) => {
-  return { type: PostlTypes.FETCH_POST_SECCEES, payload: obj };
+const fetchAllPostsSecceesAction = (obj: any) => {
+  return { type: PostlTypes.FETCH_ALL_POSTS_SECCEES, payload: obj };
+};
+
+const fetchOnePostLoadingAction = () => {
+  return { type: PostlTypes.FETCH_ONE_POST_LOADING };
+};
+const fetchOnePostErrorAction = (error: any) => {
+  return { type: PostlTypes.FETCH_ONE_POST_ERROR, payload: error };
+};
+const fetchOnePostSecceesAction = (obj: any) => {
+  return { type: PostlTypes.FETCH_ONE_POST_SECCEES, payload: obj };
 };
 
 //получение всех постов (GET)
 export const fetchAllPostsAction: any = () => {
   return async (dispatch: any) => {
     try {
-      dispatch(fetchPostsLoadingAction());
+      dispatch(fetchAllPostsLoadingAction());
       const respons = await instance.get("posts");
-      dispatch(fetchPostsSecceesAction(respons.data.items));
+      dispatch(fetchAllPostsSecceesAction(respons.data.items));
     } catch (error) {
-      dispatch(fetchPostsErrorAction("Не удалось получить посты"));
+      dispatch(fetchAllPostsErrorAction("Не удалось получить посты"));
       console.log(error);
     }
   };
 };
 
+//получение одного поста (GET)
+export const fetchOnePostAction: any = () => {
+  return async (dispatch: any) => {
+    try {
+      dispatch(fetchOnePostLoadingAction());
+      const respons = await instance.get("posts");
+      dispatch(fetchOnePostSecceesAction(respons.data.items));
+    } catch (error) {
+      dispatch(fetchOnePostErrorAction("Не удалось получить посты"));
+      console.log(error);
+    }
+  };
+};    
+
 //получение поста по id  (POST)
 export const fetchOnePostsAction: any = (idPost: any) => {
   return async (dispatch: any) => {
     try {
-      dispatch(fetchPostsLoadingAction());
+      dispatch(fetchAllPostsLoadingAction());
       const respons = await instance.get(`posts/${idPost}`);
-      dispatch(fetchPostsSecceesAction(respons.data));
+      dispatch(fetchAllPostsSecceesAction(respons.data));
     } catch (error) {
-      dispatch(fetchPostsErrorAction("Не удалось получить пост"));
+      dispatch(fetchAllPostsErrorAction("Не удалось получить пост"));
       console.log(error);
     }
   };
@@ -51,7 +75,7 @@ export const createPostAction: any = (valueInput: any) => {
       });
       dispatch(fetchAllPostsAction());
     } catch (error) {
-      dispatch(fetchPostsErrorAction("Не удалось создать пост"));
+      dispatch(fetchAllPostsErrorAction("Не удалось создать пост"));
       console.log(error);
     }
   };
@@ -61,14 +85,14 @@ export const createPostAction: any = (valueInput: any) => {
 export const redactPostAction: any = (idPost: any, inputValue: any) => {
   return async (dispatch: any) => {
     try {
-      dispatch(fetchPostsLoadingAction());
+      dispatch(fetchAllPostsLoadingAction());
       await instance.patch(`posts/${idPost}`, {
         title: inputValue.title,
         text: inputValue.text,
       });
       dispatch(fetchAllPostsAction());
     } catch (error) {
-      dispatch(fetchPostsErrorAction("Ошибка при редактирвоании поста "));
+      dispatch(fetchAllPostsErrorAction("Ошибка при редактирвоании поста "));
       console.log(error);
     }
   };
@@ -78,11 +102,11 @@ export const redactPostAction: any = (idPost: any, inputValue: any) => {
 export const deletedPostAction: any = (idPost: any) => {
   return async (dispatch: any) => {
     try {
-      dispatch(fetchPostsLoadingAction());
+      dispatch(fetchAllPostsLoadingAction());
       await instance.delete(`posts/${idPost}`);
       dispatch(fetchAllPostsAction());
     } catch (error) {
-      dispatch(fetchPostsErrorAction("Ошибка при удалении поста "));
+      dispatch(fetchAllPostsErrorAction("Ошибка при удалении поста "));
       console.log(error);
     }
   };

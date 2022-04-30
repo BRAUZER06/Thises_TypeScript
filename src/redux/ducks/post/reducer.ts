@@ -24,24 +24,62 @@ const initState: InitState = {
       _id: "",
     },
   ],
+  checkOnePost: {
+    error: null,
+    loading: false,
+    post: {
+      createdAt: "",
+      description: "",
+      photoUrl: "",
+      text: "",
+      title: "",
+      updatedAt: "",
+      user: {
+        createdAt: "",
+        email: "",
+        fullName: "",
+        updatedAt: "",
+        __v: 0,
+        _id: "",
+      },
+      views: 0,
+      __v: 0,
+      _id: "",
+    },
+  },
 };
 
 export const postlReducer = (state = initState, action: Actions): InitState => {
   switch (action.type) {
-    case PostlTypes.FETCH_POST_LOADING:
+    case PostlTypes.FETCH_ALL_POSTS_LOADING:
       return { ...state, error: null, loading: true };
 
-    case PostlTypes.FETCH_POST_ERROR:
+    case PostlTypes.FETCH_ALL_POSTS_ERROR:
       return { ...state, loading: false, error: action.payload };
 
-    //он тут получает и объекты и массив
-    case PostlTypes.FETCH_POST_SECCEES:
+    case PostlTypes.FETCH_ALL_POSTS_SECCEES:
       return {
         ...state,
         loading: false,
         error: null,
         posts: action.payload,
       };
+
+
+
+      case PostlTypes.FETCH_ONE_POST_LOADING:
+        return { ...state, error: null, loading: true };
+  
+      case PostlTypes.FETCH_ONE_POST_ERROR:
+        return { ...state, loading: false, error: action.payload };
+  
+      case PostlTypes.FETCH_ONE_POST_SECCEES:
+        return {
+          ...state,
+          loading: false,
+          error: null,
+          posts: action.payload,
+        };
     default:
       return state;
   }

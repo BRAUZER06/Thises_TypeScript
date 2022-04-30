@@ -1,10 +1,11 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styles from "./AuthReg.module.scss";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass, faXmark } from "@fortawesome/free-solid-svg-icons";
-import { useAppSelector } from "../../../hooks/useAppSelector";
+
 import { fetchAuthUserAction } from "../../../redux/ducks/user/actionCreators";
 interface AuthorizationProps {
   closeMenuAutoReg: (e: any) => void;
@@ -47,11 +48,13 @@ const Authorization: React.FC<AuthorizationProps> = ({
         <div className={styles.autorization}>
           <div className={styles.autorization_div}>
             <h2>Вход в аккаунт</h2>
-            <FontAwesomeIcon
-              onClick={() => closeMenuAutoReg()}
-              className={styles.autorization_div_icon}
-              icon={faXmark}
-            />
+            <Link className={styles.Link} to="/">
+              <FontAwesomeIcon
+                onClick={() => closeMenuAutoReg()}
+                className={styles.autorization_div_icon}
+                icon={faXmark}
+              />
+            </Link>
           </div>
           <form
             className={styles.autorization_form}

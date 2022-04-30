@@ -16,9 +16,9 @@ const SectionCreatePost = () => {
     text: "",
   });
 
-  const onClickGetForm = async (event) => {
-    event.preventDefault();
+  const onClickGetForm =  (event) => {
     dispatch(createPostAction(valueInput));
+    event.preventDefault();
   };
 
   const onChangeInputValue = (event) => {
@@ -28,13 +28,14 @@ const SectionCreatePost = () => {
     setInputValue({ ...valueInput, [name]: event });
   };
 
-  const onClickClearForm = () => {
+  const onClickClearForm = (event) => {
     setInputValue({
       title: "",
       description: "",
       photoUrl: "",
       text: "",
     });
+    event.preventDefault();
   };
 
   return (

@@ -28,8 +28,9 @@ export const fetchRegistUserAction: any = (inputValue: any) => {
         email: inputValue.email,
         password: inputValue.password,
       });
-      dispatch(fetchUserSucceesAction(respons.data));
+      dispatch(fetchInfoUserAction(respons.data._id));
       window.localStorage.setItem("token", respons.data.token);
+      window.localStorage.setItem("userId", respons.data._id);
     } catch (error) {
       dispatch(fetchUserErrorAction("Регистрация не удалась "));
       console.log(error);
@@ -46,9 +47,10 @@ export const fetchAuthUserAction: any = (inputValue: any) => {
         email: inputValue.email,
         password: inputValue.password,
       });
-      dispatch(fetchUserSucceesAction(respons.data));
-      // dispatch(fetchInfoUserAction(respons.data._id));
+      dispatch(fetchInfoUserAction(respons.data._id));
+
       window.localStorage.setItem("token", respons.data.token);
+      window.localStorage.setItem("userId", respons.data._id);
     } catch (error) {
       dispatch(fetchUserErrorAction("Авторизация не удалась"));
       console.log(error);
@@ -61,16 +63,16 @@ export const fetchAuthUserAction: any = (inputValue: any) => {
 //При авторизации не получает дату, приходится запрашивать дополнительно данные
 //через отдельный запрос
 
-//Получении информации о пользователе  (также допольнитель получает посты и комментария пользователя)
-// export const fetchInfoUserAction: any = (id: any) => {
-//   return async (dispatch: any) => {
-//     try {
-//       dispatch(fetchUserLoadingAction());
-//       const respons = await instance.get(`users/${id}`);
-//       dispatch(fetchUserSucceesAction(respons.data));
-//     } catch (error) {
-//       dispatch(fetchUserErrorAction("Авторизация не удалась"));
-//       console.log(error);
-//     }
-//   };
-// };
+// Получении информации о пользователе  (также допольнитель получает посты и комментария пользователя)
+export const fetchInfoUserAction: any = (id: any) => {
+  return async (dispatch: any) => {
+    try {
+      dispatch(fetchUserLoadingAction());
+      const respons = await instance.get(`users/${id}`);
+      dispatch(fetchUserSucceesAction(respons.data));
+    } catch (error) {
+      dispatch(fetchUserErrorAction("Авторизация не удалась"));
+      console.log(error);
+    }
+  };
+};
