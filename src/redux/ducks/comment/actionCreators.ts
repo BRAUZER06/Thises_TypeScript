@@ -1,91 +1,87 @@
 import { instance } from "../../../config/instance";
-import { PostlTypes } from "./types";
+import { CommentslTypes } from "./types";
 
-const fetchPostsLoadingAction = () => {
-  return { type: PostlTypes.FETCH_POST_LOADING };
+const fetchCommentsLoadingAction = () => {
+  return { type: CommentslTypes.FETCH_COMMENTS_LOADING };
 };
-const fetchPostsErrorAction = (error: any) => {
-  return { type: PostlTypes.FETCH_POST_ERROR, payload: error };
+const fetchCommentsErrorAction = (error: any) => {
+  return { type: CommentslTypes.FETCH_COMMENTS_ERROR, payload: error };
 };
-const fetchPostsSecceesAction = (obj: any) => {
-  return { type: PostlTypes.FETCH_POST_SECCEES, payload: obj };
+const fetchCommentsSecceesAction = (obj: any) => {
+  return { type: CommentslTypes.FETCH_COMMENTS_SECCEES, payload: obj };
 };
 
-//получение всех постов (GET)
-export const fetchAllPostsAction: any = () => {
+//получение всех комментарии (GET)
+export const fetchAllCommentAction: any = () => {
   return async (dispatch: any) => {
     try {
-      dispatch(fetchPostsLoadingAction());
-      const respons = await instance.get("posts");
-      dispatch(fetchPostsSecceesAction(respons.data.items));
+      dispatch(fetchCommentsLoadingAction());
+      const respons = await instance.get("comments");
+      dispatch(fetchCommentsSecceesAction(respons.data.items));
     } catch (error) {
-      dispatch(fetchPostsErrorAction("Не удалось получить посты"));
+      dispatch(fetchCommentsErrorAction("Не удалось получить комментарии"));
       console.log(error);
     }
   };
 };
 
-//получение поста по id  (POST)
-export const fetchOnePostsAction: any = (idPost: any) => {
+//получение всех комментарии одного поста (GET)
+export const fetchAllCommentPostAction: any = (idPost: any) => {
   return async (dispatch: any) => {
     try {
-      dispatch(fetchPostsLoadingAction());
-      const respons = await instance.get(`posts/${idPost}`);
-      dispatch(fetchPostsSecceesAction(respons.data));
+      dispatch(fetchCommentsLoadingAction());
+      const respons = await instance.get(`comments/post/${idPost}`);
+      dispatch(fetchCommentsSecceesAction(respons.data.items));
     } catch (error) {
-      dispatch(fetchPostsErrorAction("Не удалось получить пост"));
+      dispatch(fetchCommentsErrorAction("Не удалось получить комментарии"));
       console.log(error);
     }
   };
 };
 
-//создание поста (POST)
-export const createPostAction: any = (valueInput: any) => {
+//создание комментария (POST)
+export const createCommentAction: any = (value: any, idPost: any) => {
   return async (dispatch: any) => {
     try {
-      await instance.post("/posts", {
-        title: valueInput.title,
-        description: valueInput.description,
-        photoUrl: valueInput.photoUrl,
-        text: valueInput.text,
+      await instance.post("comments", {
+        text: value,
+        postId: idPost,
       });
-      dispatch(fetchAllPostsAction());
+      dispatch(fetchAllCommentAction());
     } catch (error) {
-      dispatch(fetchPostsErrorAction("Не удалось создать пост"));
+      dispatch(fetchCommentsErrorAction("Не удалось создать комментарий"));
       console.log(error);
     }
   };
 };
 
-//редактировать пост (PATCH)
-export const redactPostAction: any = (idPost: any, inputValue: any) => {
+//редактировать комментарий (PATCH)
+export const redactCommentAction: any = (idComment: any, inputValue: any) => {
   return async (dispatch: any) => {
     try {
-      dispatch(fetchPostsLoadingAction());
-      await instance.patch(`posts/${idPost}`, {
+      await instance.patch(`comments/${idComment}`, {
         title: inputValue.title,
         text: inputValue.text,
       });
-      dispatch(fetchAllPostsAction());
+      dispatch(fetchAllCommentAction());
     } catch (error) {
-      dispatch(fetchPostsErrorAction("Ошибка при редактирвоании поста "));
+      dispatch(
+        fetchCommentsErrorAction("Ошибка при редактирвоании комментария ")
+      );
       console.log(error);
     }
   };
 };
 
-//удаление поста (DELETE)
-export const deletedPostAction: any = (idPost: any) => {
+//удаление комментария (DELETE)
+export const deleteCommentAction: any = (idComment: any) => {
   return async (dispatch: any) => {
     try {
-      dispatch(fetchPostsLoadingAction());
-      await instance.delete(`posts/${idPost}`);
-      dispatch(fetchAllPostsAction());
+      await instance.delete(`comments/${idComment}`);
+      dispatch(fetchAllCommentAction());
     } catch (error) {
-      dispatch(fetchPostsErrorAction("Ошибка при удалении поста "));
+      dispatch(fetchCommentsErrorAction("Ошибка при удалении комментария "));
       console.log(error);
     }
   };
 };
-
-// ЗАГРУЖЕНИЕ ИЗОБРАЖЕНИЯ (СДЕЛАТЬ)

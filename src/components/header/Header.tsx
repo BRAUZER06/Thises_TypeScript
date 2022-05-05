@@ -13,9 +13,11 @@ import {
 import {
   headerInputValueAction,
   headerCheckedInputAction,
-  headerCheckedLoginAction,
 } from "../../redux/ducks/header/actionCreators";
-import { exiteAccountUserAction } from "../../redux/ducks/user/actionCreators";
+import {
+  exiteAccountUserAction,
+  fetchInfoUserAction,
+} from "../../redux/ducks/user/actionCreators";
 
 import { useDispatch } from "react-redux";
 import { useAppSelector } from "../../hooks/useAppSelector";
@@ -28,11 +30,11 @@ const Header: React.FC = () => {
   const { checkedInput, checkedModalLogin } = useAppSelector(
     (state) => state.header
   );
-  const  userId  = useAppSelector((state) => state.userReducer.user._id);
+  const userId = useAppSelector((state) => state.userReducer.user._id);
 
-
-  
-
+  if (window.localStorage.getItem("userId")) {
+    dispatch(fetchInfoUserAction(window.localStorage.getItem("userId")));
+  }
 
   const onClickName = () => {
     navigate("/");

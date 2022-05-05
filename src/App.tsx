@@ -12,10 +12,7 @@ import { useDispatch } from "react-redux";
 import {fetchInfoUserAction} from './redux/ducks/user/actionCreators'
 
 function App() {
-  const dispatch = useDispatch()
-  if(window.localStorage.getItem('userId')){
-    dispatch(fetchInfoUserAction(window.localStorage.getItem('userId')))
-  }
+
 
 
 

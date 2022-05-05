@@ -8,6 +8,7 @@ import {
   modalCheckedRegistAuthAction,
   // modalInputValueActions,
 } from "../../../redux/ducks/modal/actionCreators";
+import { fetchInfoUserAction } from "../../../redux/ducks/user/actionCreators";
 
 const LoginContainer: React.FC = () => {
   const dispatch = useDispatch();
@@ -24,6 +25,8 @@ const LoginContainer: React.FC = () => {
   //Закрывает модальное окно с регистрацией
   const closeMenuAutoReg = () => {
     dispatch(modalCheckedAction(false));
+
+
   };
 
   //переключатель с Авторизации на Регистрацию

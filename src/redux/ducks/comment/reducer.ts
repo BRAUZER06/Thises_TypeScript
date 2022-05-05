@@ -1,46 +1,36 @@
-import { Actions, InitState, PostlTypes } from "./types";
+import { Actions, InitState, CommentslTypes } from "./types";
 
 const initState: InitState = {
   error: null,
   loading: false,
-  posts: [
+  comments: [
     {
-      createdAt: "",
-      description: "",
-      photoUrl: "",
-      text: "",
-      title: "",
-      updatedAt: "",
-      user: {
-        createdAt: "",
-        email: "",
-        fullName: "",
-        updatedAt: "",
-        __v: 0,
-        _id: "",
-      },
-      views: 0,
-      __v: 0,
       _id: "",
+      text: "",
+      post: "",
+      user: "",
+      createdAt: "",
+      updatedAt: "",
+      __v: 0,
     },
   ],
 };
 
-export const postlReducer = (state = initState, action: Actions): InitState => {
+export const commentReducer = (state = initState, action: Actions): InitState => {
   switch (action.type) {
-    case PostlTypes.FETCH_POST_LOADING:
+    case CommentslTypes.FETCH_COMMENTS_LOADING:
       return { ...state, error: null, loading: true };
 
-    case PostlTypes.FETCH_POST_ERROR:
+    case CommentslTypes.FETCH_COMMENTS_ERROR:
       return { ...state, loading: false, error: action.payload };
 
     //он тут получает и объекты и массив
-    case PostlTypes.FETCH_POST_SECCEES:
+    case CommentslTypes.FETCH_COMMENTS_SECCEES:
       return {
         ...state,
         loading: false,
         error: null,
-        posts: action.payload,
+        comments: action.payload,
       };
     default:
       return state;

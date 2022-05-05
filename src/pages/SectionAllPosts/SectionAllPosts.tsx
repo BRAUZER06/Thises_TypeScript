@@ -15,6 +15,7 @@ import {
   deletedPostAction,
   fetchAllPostsAction,
 } from "../../redux/ducks/post/actionCreators";
+import { fetchInfoUserAction } from "../../redux/ducks/user/actionCreators";
 
 const SectionAllPosts = () => {
   const { id } = useParams();
@@ -28,6 +29,12 @@ const SectionAllPosts = () => {
     dispatch(deletedPostAction(postId));
   };
 
+ 
+
+  console.log(posts);
+  console.log(window.localStorage.getItem('userId'));
+  
+  
   React.useEffect(() => {
     dispatch(fetchAllPostsAction());
   }, []);

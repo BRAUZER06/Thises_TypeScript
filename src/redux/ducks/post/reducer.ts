@@ -65,21 +65,36 @@ export const postlReducer = (state = initState, action: Actions): InitState => {
         posts: action.payload,
       };
 
+    case PostlTypes.FETCH_ONE_POST_LOADING:
+      return {
+        ...state,
+        checkOnePost: {
+          ...state.checkOnePost,
+          loading: true,
+          error: null,
+        },
+      };
 
+    case PostlTypes.FETCH_ONE_POST_ERROR:
+      return {
+        ...state,
+        checkOnePost: {
+          ...state.checkOnePost,
+          loading: false,
+          error: action.payload,
+        },
+      };
 
-      case PostlTypes.FETCH_ONE_POST_LOADING:
-        return { ...state, error: null, loading: true };
-  
-      case PostlTypes.FETCH_ONE_POST_ERROR:
-        return { ...state, loading: false, error: action.payload };
-  
-      case PostlTypes.FETCH_ONE_POST_SECCEES:
-        return {
-          ...state,
+    case PostlTypes.FETCH_ONE_POST_SECCEES:
+      return {
+        ...state,
+        checkOnePost: {
+          ...state.checkOnePost,
           loading: false,
           error: null,
-          posts: action.payload,
-        };
+          post: action.payload,
+        },
+      };
     default:
       return state;
   }

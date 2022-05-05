@@ -35,29 +35,15 @@ export const fetchAllPostsAction: any = () => {
   };
 };
 
-//получение одного поста (GET)
-export const fetchOnePostAction: any = () => {
+//получение поста по id  (GET)
+export const fetchOnePostAction: any = (idPost: any) => {
   return async (dispatch: any) => {
     try {
       dispatch(fetchOnePostLoadingAction());
-      const respons = await instance.get("posts");
-      dispatch(fetchOnePostSecceesAction(respons.data.items));
-    } catch (error) {
-      dispatch(fetchOnePostErrorAction("Не удалось получить посты"));
-      console.log(error);
-    }
-  };
-};    
-
-//получение поста по id  (POST)
-export const fetchOnePostsAction: any = (idPost: any) => {
-  return async (dispatch: any) => {
-    try {
-      dispatch(fetchAllPostsLoadingAction());
       const respons = await instance.get(`posts/${idPost}`);
-      dispatch(fetchAllPostsSecceesAction(respons.data));
+      dispatch(fetchOnePostSecceesAction(respons.data));
     } catch (error) {
-      dispatch(fetchAllPostsErrorAction("Не удалось получить пост"));
+      dispatch(fetchOnePostErrorAction("Не удалось получить пост"));
       console.log(error);
     }
   };
@@ -67,7 +53,7 @@ export const fetchOnePostsAction: any = (idPost: any) => {
 export const createPostAction: any = (valueInput: any) => {
   return async (dispatch: any) => {
     try {
-      await instance.post("/posts", {
+      await instance.post("posts", {
         title: valueInput.title,
         description: valueInput.description,
         photoUrl: valueInput.photoUrl,

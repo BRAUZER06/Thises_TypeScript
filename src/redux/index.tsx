@@ -6,12 +6,14 @@ import { headerReducer } from "./ducks/header/reducer";
 import { modalReducer } from "./ducks/modal/reducer";
 import { userReducer } from "./ducks/user/reducer";
 import { postlReducer } from "./ducks/post/reducer";
+import { commentReducer } from "./ducks/comment/reducer";
 
 const rootReducer = combineReducers({
   header: headerReducer,
   modal: modalReducer,
   userReducer: userReducer,
-  postReducer:postlReducer
+  postReducer: postlReducer,
+  comment: commentReducer,
 });
 
 export const store = legacy_createStore(rootReducer, applyMiddleware(thunk));

@@ -5,89 +5,55 @@ import styles from "./SectionCechkPost.module.scss";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { instance } from "../../config/instance";
-import { Post } from "../../types/post";
+
 import { useAppSelector } from "../../hooks/useAppSelector";
+import { useDispatch } from "react-redux";
+import { fetchOnePostAction } from "../../redux/ducks/post/actionCreators";
+import {
+  createCommentAction,
+  fetchAllCommentPostAction,
+} from "../../redux/ducks/comment/actionCreators";
 
 const SectionCechkPost = () => {
-  const posts = useAppSelector(state=>state.postReducer.posts)
+  const posts = useAppSelector((state) => state.postReducer.posts);
   const { id } = useParams();
-  const [isLoading, setIsLoading] = React.useState<boolean>(false);
-  const [noImges, setNoImages] = React.useState<boolean>(false);
-  const [inputValue, setInputValue] = React.useState<string>("");
-  const [fetchPost, setFetchPost] = React.useState({
-    createdAt: "",
-    description: "",
-    photoUrl: "",
-    text: "",
-    title: "",
-    updatedAt: "",
-    user: {
-      createdAt: "",
-      email: "",
-      fullName: "",
-      updatedAt: "",
-      __v: 0,
-      _id: "",
-    },
-    views: 0,
-    __v: 0,
-    _id: "",
-  });
-  const [fetchComments, setFetchComments] = React.useState([
-    {
-      createdAt: "",
-      post: "",
-      text: "",
-      updatedAt: "",
-      user: {
-        createdAt: "",
-        email: "",
-        fullName: "",
-        updatedAt: "",
-        __v: 0,
-        _id: "",
-      },
-      __v: 0,
-      _id: "",
-    },
-  ]);
-  console.log(posts);
-  
+  const dispatch = useDispatch();
 
-  console.log("useParams", id);
+  const [inputValue, setInputValue] = React.useState<string>("");
+
+  const {
+    error: errorPost,
+    loading: loadingPost,
+    post: fetchPost,
+  } = useAppSelector((state) => state.postReducer.checkOnePost);
+
+  const {
+    error: errorComment,
+    loading: loadingComment,
+    comments: fetchComments,
+  } = useAppSelector((state) => state.comment);
 
   React.useEffect(() => {
-    setIsLoading(true);
-    (async () => {
-      await instance
-        .get(`posts/${id}`)
-        .then((res: any) => setFetchPost(res.data));
-      setIsLoading(false);
-      await instance
-        .get(`comments/post/${id}`)
-        .then((res: any) => setFetchComments(res.data));
-    })();
+    dispatch(fetchOnePostAction(id));
+    dispatch(fetchAllCommentPostAction(id));
   }, [id]);
+
   console.log(fetchComments);
 
-  console.log(fetchPost);
-
-  const onClickButtonInputForm = async () => {};
-
-  const noImg = () => {
-    if (fetchPost.photoUrl.indexOf("http") === 0) {
-      setNoImages(false);
-    } else {
-      setNoImages(true);
-    }
+  const onClickButtonInputForm = () => {
+    dispatch(createCommentAction(inputValue, id));
+    setInputValue("");
   };
 
   const onChangeInputValue = (e: any) => {
     setInputValue(e.target.value);
   };
 
-  if (isLoading) {
-    return <h1>Loading...</h1>;
+  if (errorPost) {
+    return <h2>Произошла ошибка при загрузке поста...</h2>;
+  }
+  if (loadingPost) {
+    return <h2>Подождите идет загрузка поста...</h2>;
   }
 
   return (
@@ -95,25 +61,23 @@ const SectionCechkPost = () => {
       <div className={styles.container_photo}>
         <img
           onClick={(e) => console.log(e)}
-          src={
-            noImges
-              ? "https://brilliant24.ru/files/cat/template_01.png"
-              : fetchPost.photoUrl
-          }
+          src={fetchPost.photoUrl}
+          // "https://brilliant24.ru/files/cat/template_01.png"
           alt="Фотки нэт"
         />
       </div>
       <div className={styles.container_up}>
         <div className={styles.container_up_div_1}>
           <p className={styles.container_up_div_1_p1}>
-            {new Date(fetchPost.createdAt).toLocaleString("ru", {
-              year: "numeric",
-              month: "long",
-              day: "numeric",
-              hour: "numeric",
-              minute: "numeric",
-              second: "numeric",
-            })}
+            {fetchPost.createdAt &&
+              new Date(fetchPost.createdAt).toLocaleString("ru", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+                hour: "numeric",
+                minute: "numeric",
+                second: "numeric",
+              })}
           </p>
           <FontAwesomeIcon
             className={styles.container_up_div_1_icon}
@@ -131,12 +95,11 @@ const SectionCechkPost = () => {
         <p className={styles.container_down_text_1}>{fetchPost.text}</p>
       </div>
       <div className={styles.container_comment}>
-        <h2>Комментарии ({fetchComments.length})</h2>
-        {fetchComments.map((comment) => (
+        <h2>Комментарии ({fetchComments ? fetchComments.length : 0})</h2>
+        {fetchComments?.map((comment) => (
           <div key={comment._id} className={styles.container_comment_content}>
             <div className={styles.container_comment_content_div}>
               <p className={styles.container_comment_content_div_name}>
-                {/* выдает ошибку comment.user.fullName ( наверное коддировка ) */}
                 {comment.user && comment.user.fullName}
               </p>
               <p className={styles.container_comment_content_div_data}>
