@@ -24,7 +24,7 @@ const Nav = () => {
 
   const [openSideBar, setOpenSideBar] = React.useState(true);
   const onClickBtnHome = () => {
-    navigate("/home");
+    navigate("/");
   };
   const onClickCloseMenu = () => {};
   const onClickToggleMenu = () => {

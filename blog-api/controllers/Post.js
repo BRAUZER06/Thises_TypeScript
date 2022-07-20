@@ -8,8 +8,8 @@ const checkPostBody = Joi.object({
   title: Joi.string().required().min(3).max(256),
   text: Joi.string().required().min(3).max(65536),
   description: Joi.string().required().min(3).max(400),
-  photoUrl: Joi.string().min(3).max(100),
-  user: Joi.string().required().length(24),
+  photoUrl: Joi.string().min(3).max(400),
+  user: Joi.string().required().length(34),
 });
 
 module.exports.all = async (req, res) => {

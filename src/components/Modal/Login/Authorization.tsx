@@ -76,7 +76,7 @@ const Authorization: React.FC<AuthorizationProps> = ({
               />
             </label>
             <div className={styles.error}>
-              {errors?.email && <p>{errors?.email?.message || "Error!"}</p>}
+              {errors?.email && <p>{errors?.email?.message && "Error!"}</p>}
             </div>
 
             <label>
@@ -100,7 +100,7 @@ const Authorization: React.FC<AuthorizationProps> = ({
             </label>
             <div className={styles.error}>
               {errors?.password && (
-                <p>{errors?.password?.message || "Error!"}</p>
+                <p>{errors?.password?.message && "Error!"}</p>
               )}
             </div>
 

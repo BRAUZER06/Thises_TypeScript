@@ -31,8 +31,7 @@ const SectionAllPosts = () => {
 
  
 
-  console.log(posts);
-  console.log(window.localStorage.getItem('userId'));
+
   
   
   React.useEffect(() => {

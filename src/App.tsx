@@ -8,8 +8,7 @@ import SectionAllPosts from "./pages/SectionAllPosts/SectionAllPosts";
 import SectionInfo from "./pages/SectionMyInfo/SectionMyInfo";
 import SectionCreatePost from "./pages/SectionCreatePost/SectionCreatePost";
 import SectionCechkPost from "./pages/SectionCechkPost/SectionCechkPost";
-import { useDispatch } from "react-redux";
-import {fetchInfoUserAction} from './redux/ducks/user/actionCreators'
+
 
 function App() {
 

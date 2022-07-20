@@ -4,7 +4,7 @@ import styles from "./AuthReg.module.scss";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMagnifyingGlass, faXmark } from "@fortawesome/free-solid-svg-icons";
+import {  faXmark } from "@fortawesome/free-solid-svg-icons";
 import { fetchRegistUserAction } from "../../../redux/ducks/user/actionCreators";
 type RegistrationProps = {
   closeMenuAutoReg: (e: any) => void;
@@ -80,7 +80,7 @@ const Registration: React.FC<RegistrationProps> = ({
             </label>
             <div className={styles.error}>
               {errors?.fullName && (
-                <p>{errors?.fullName?.message || "Error!"}</p>
+                <p>{errors.fullName.message && "Error!"}</p> // тут вместо && было ||
               )}
             </div>
 
@@ -100,7 +100,9 @@ const Registration: React.FC<RegistrationProps> = ({
               />
             </label>
             <div className={styles.error}>
-              {errors?.email && <p>{errors?.email?.message || "Error!"}</p>}
+              {
+                errors.email && <p>{errors?.email?.message && "Error!"}</p> //тут вместо && было ||
+              }
             </div>
 
             <label>
@@ -124,7 +126,7 @@ const Registration: React.FC<RegistrationProps> = ({
             </label>
             <div className={styles.error}>
               {errors?.password && (
-                <p>{errors?.password?.message || "Error!"}</p>
+                <p>{errors.password.message && "Error!"}</p> //тут вместо && было ||
               )}
             </div>
 
