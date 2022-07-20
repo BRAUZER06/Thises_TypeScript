@@ -21,10 +21,10 @@ const SectionAllPosts = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const { posts, error, loading } = useAppSelector(
-    (state) => state.postReducer
+    (state) => state.post
   );
 
-  const userId = useAppSelector((state) => state.userReducer.user._id);
+  const userId = useAppSelector((state) => state.user.user._id);
   const onClickDeletedPost = (postId: string) => {
     dispatch(deletedPostAction(postId));
   };

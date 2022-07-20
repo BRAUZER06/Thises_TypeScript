@@ -17,10 +17,10 @@ const Nav = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { fullName, createdAt } = useAppSelector(
-    (state) => state.userReducer.user
+    (state) => state.user.user
   );
 
-  const userId = useAppSelector((state) => state.userReducer.user._id);
+  const userId = useAppSelector((state) => state.user.user._id);
 
   const [openSideBar, setOpenSideBar] = React.useState(true);
   const onClickBtnHome = () => {

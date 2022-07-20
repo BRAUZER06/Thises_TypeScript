@@ -16,7 +16,10 @@ const initState: InitState = {
   ],
 };
 
-export const commentReducer = (state = initState, action: Actions): InitState => {
+export const commentReducer = (
+  state = initState,
+  action: Actions
+): InitState => {
   switch (action.type) {
     case CommentslTypes.FETCH_COMMENTS_LOADING:
       return { ...state, error: null, loading: true };

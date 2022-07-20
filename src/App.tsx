@@ -8,13 +8,11 @@ import SectionAllPosts from "./pages/SectionAllPosts/SectionAllPosts";
 import SectionInfo from "./pages/SectionMyInfo/SectionMyInfo";
 import SectionCreatePost from "./pages/SectionCreatePost/SectionCreatePost";
 import SectionCechkPost from "./pages/SectionCechkPost/SectionCechkPost";
-
+import SectionMyProfile from "./pages/SectionMyProfile/SectionMyProfile";
 
 function App() {
-
-
-
-
+ 
+  
   return (
     <div className="App">
       <div className="header">
@@ -48,6 +46,14 @@ function App() {
               <>
                 <SectionCechkPost />
                 <SectionAllPosts />
+              </>
+            }
+          />
+          <Route
+            path="/MyProfile"
+            element={
+              <>
+                <SectionMyProfile />
               </>
             }
           />

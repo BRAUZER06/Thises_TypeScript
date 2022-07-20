@@ -12,7 +12,7 @@ import { fetchInfoUserAction } from "../../../redux/ducks/user/actionCreators";
 
 const LoginContainer: React.FC = () => {
   const dispatch = useDispatch();
-  const token = useAppSelector((state) => state.userReducer.user.token);
+  const token = useAppSelector((state) => state.user.user.token);
   const { toggleRegisAuth, modalChecked } = useAppSelector(
     (state) => state.modal
   );

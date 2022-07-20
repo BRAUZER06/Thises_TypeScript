@@ -15,7 +15,7 @@ import {
 } from "../../redux/ducks/comment/actionCreators";
 
 const SectionCechkPost = () => {
-  const posts = useAppSelector((state) => state.postReducer.posts);
+  const posts = useAppSelector((state) => state.post.posts);
   const { id } = useParams();
   const dispatch = useDispatch();
 
@@ -25,7 +25,7 @@ const SectionCechkPost = () => {
     error: errorPost,
     loading: loadingPost,
     post: fetchPost,
-  } = useAppSelector((state) => state.postReducer.checkOnePost);
+  } = useAppSelector((state) => state.post.checkOnePost);
 
   const {
     error: errorComment,

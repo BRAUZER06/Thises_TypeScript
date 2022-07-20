@@ -11,8 +11,8 @@ import { commentReducer } from "./ducks/comment/reducer";
 const rootReducer = combineReducers({
   header: headerReducer,
   modal: modalReducer,
-  userReducer: userReducer,
-  postReducer: postlReducer,
+  user: userReducer,
+  post: postlReducer,
   comment: commentReducer,
 });
 

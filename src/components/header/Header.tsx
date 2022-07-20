@@ -30,7 +30,7 @@ const Header: React.FC = () => {
   const { checkedInput, checkedModalLogin } = useAppSelector(
     (state) => state.header
   );
-  const userId = useAppSelector((state) => state.userReducer.user._id);
+  const userId = useAppSelector((state) => state.user.user._id);
 
   if (window.localStorage.getItem("userId")) {
     dispatch(fetchInfoUserAction(window.localStorage.getItem("userId")));
