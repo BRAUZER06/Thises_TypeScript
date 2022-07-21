@@ -20,20 +20,15 @@ import { fetchInfoUserAction } from "../../redux/ducks/user/actionCreators";
 const SectionAllPosts = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const { posts, error, loading } = useAppSelector(
-    (state) => state.post
-  );
+  const { posts, error, loading } = useAppSelector((state) => state.post);
 
   const userId = useAppSelector((state) => state.user.user._id);
   const onClickDeletedPost = (postId: string) => {
     dispatch(deletedPostAction(postId));
   };
-
- 
-
-
+  console.log(id);
   
-  
+
   React.useEffect(() => {
     dispatch(fetchAllPostsAction());
   }, []);
@@ -49,8 +44,7 @@ const SectionAllPosts = () => {
             <div key={post._id}>
               <div
                 className={classNames(styles.content, {
-                  [styles.content_active]:
-                    window.location.pathname === `/checkPost/${post._id}`,
+                  [styles.content_active]: userId === `/checkPost/${post._id}`,
                 })}
                 key={post._id}
               >
@@ -82,7 +76,7 @@ const SectionAllPosts = () => {
                       <span className={styles.container_div_sub_div_span}>
                         {post.views}
                       </span>
-                      {userId === post.user._id && (
+                      {userId === post.user?._id && (
                         <>
                           <FontAwesomeIcon
                             icon={faTrashCan}
@@ -111,7 +105,7 @@ const SectionAllPosts = () => {
                   <img
                     className={styles.content_photo}
                     src={post.photoUrl}
-                    alt="Фотки нэт"
+                    alt="Фото нет"
                   />
                 </div>
               </div>

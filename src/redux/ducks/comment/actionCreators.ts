@@ -10,6 +10,9 @@ const fetchCommentsErrorAction = (error: any) => {
 const fetchCommentsSecceesAction = (obj: any) => {
   return { type: CommentslTypes.FETCH_COMMENTS_SECCEES, payload: obj };
 };
+const fetchAllPostCommentsSecceesAction = (obj: any) => {
+  return { type: CommentslTypes.FETCH_ALL_POST_COMMENTS, payload: obj };
+};
 
 //получение всех комментарии (GET)
 export const fetchAllCommentAction: any = () => {
@@ -31,7 +34,7 @@ export const fetchAllCommentPostAction: any = (idPost: any) => {
     try {
       dispatch(fetchCommentsLoadingAction());
       const respons = await instance.get(`comments/post/${idPost}`);
-      dispatch(fetchCommentsSecceesAction(respons.data.items));
+      dispatch(fetchAllPostCommentsSecceesAction(respons.data));
     } catch (error) {
       dispatch(fetchCommentsErrorAction("Не удалось получить комментарии"));
       console.log(error);
@@ -47,7 +50,8 @@ export const createCommentAction: any = (value: any, idPost: any) => {
         text: value,
         postId: idPost,
       });
-      dispatch(fetchAllCommentAction());
+      dispatch(fetchAllCommentPostAction(idPost));
+      console.log(idPost);
     } catch (error) {
       dispatch(fetchCommentsErrorAction("Не удалось создать комментарий"));
       console.log(error);

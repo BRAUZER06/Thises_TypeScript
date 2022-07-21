@@ -15,10 +15,8 @@ import {
 } from "../../redux/ducks/comment/actionCreators";
 
 const SectionCechkPost = () => {
-  const posts = useAppSelector((state) => state.post.posts);
   const { id } = useParams();
   const dispatch = useDispatch();
-
   const [inputValue, setInputValue] = React.useState<string>("");
 
   const {
@@ -27,18 +25,12 @@ const SectionCechkPost = () => {
     post: fetchPost,
   } = useAppSelector((state) => state.post.checkOnePost);
 
-  const {
-    error: errorComment,
-    loading: loadingComment,
-    comments: fetchComments,
-  } = useAppSelector((state) => state.comment);
+  const { comments: fetchComments } = useAppSelector((state) => state.comment);
 
   React.useEffect(() => {
     dispatch(fetchOnePostAction(id));
     dispatch(fetchAllCommentPostAction(id));
   }, [id]);
-
-  console.log(fetchComments);
 
   const onClickButtonInputForm = () => {
     dispatch(createCommentAction(inputValue, id));
@@ -61,7 +53,7 @@ const SectionCechkPost = () => {
       <div className={styles.container_photo}>
         <img
           onClick={(e) => console.log(e)}
-          src={fetchPost.photoUrl}
+          src={fetchPost?.photoUrl}
           // "https://brilliant24.ru/files/cat/template_01.png"
           alt="Фотки нэт"
         />
@@ -69,8 +61,8 @@ const SectionCechkPost = () => {
       <div className={styles.container_up}>
         <div className={styles.container_up_div_1}>
           <p className={styles.container_up_div_1_p1}>
-            {fetchPost.createdAt &&
-              new Date(fetchPost.createdAt).toLocaleString("ru", {
+            {fetchPost?.createdAt &&
+              new Date(fetchPost?.createdAt).toLocaleString("ru", {
                 year: "numeric",
                 month: "long",
                 day: "numeric",
@@ -92,7 +84,7 @@ const SectionCechkPost = () => {
       </div>
 
       <div className={styles.container_down}>
-        <p className={styles.container_down_text_1}>{fetchPost.text}</p>
+        <p className={styles.container_down_text_1}>{fetchPost?.text}</p>
       </div>
       <div className={styles.container_comment}>
         <h2>Комментарии ({fetchComments ? fetchComments.length : 0})</h2>

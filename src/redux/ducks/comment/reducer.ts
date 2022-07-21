@@ -27,8 +27,14 @@ export const commentReducer = (
     case CommentslTypes.FETCH_COMMENTS_ERROR:
       return { ...state, loading: false, error: action.payload };
 
-    //он тут получает и объекты и массив
     case CommentslTypes.FETCH_COMMENTS_SECCEES:
+      return {
+        ...state,
+        loading: false,
+        error: null,
+        comments: action.payload,
+      };
+    case CommentslTypes.FETCH_ALL_POST_COMMENTS:
       return {
         ...state,
         loading: false,

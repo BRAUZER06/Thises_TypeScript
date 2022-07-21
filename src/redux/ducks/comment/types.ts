@@ -2,6 +2,12 @@ export enum CommentslTypes {
   FETCH_COMMENTS_LOADING = "FETCH_COMMENTS_LOADING",
   FETCH_COMMENTS_ERROR = "FETCH_COMMENTS_ERROR",
   FETCH_COMMENTS_SECCEES = "FETCH_COMMENTS_SECCEES",
+  FETCH_ALL_POST_COMMENTS = "FETCH_ALL_POST_COMMENTS",
+}
+
+interface CommentAllPostComments {
+  type: CommentslTypes.FETCH_ALL_POST_COMMENTS;
+  payload: any;
 }
 
 interface CommentsLoading {
@@ -32,4 +38,8 @@ export interface InitState {
   comments: Comments[];
 }
 
-export type Actions = CommentsLoading | CommentsError | CommentsSeccees;
+export type Actions =
+  | CommentsLoading
+  | CommentsError
+  | CommentsSeccees
+  | CommentAllPostComments;

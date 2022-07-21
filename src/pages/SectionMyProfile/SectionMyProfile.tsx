@@ -10,18 +10,23 @@ import {
 import { useAppSelector } from "../../hooks/useAppSelector";
 import { useDispatch } from "react-redux";
 import {
+  deleteCommentAction,
   fetchAllCommentAction,
   fetchAllCommentPostAction,
 } from "../../redux/ducks/comment/actionCreators";
-import { fetchAllPostsAction } from "../../redux/ducks/post/actionCreators";
+import { deletedPostAction, fetchAllPostsAction } from "../../redux/ducks/post/actionCreators";
 
 const SectionMyProfile: React.FC = () => {
   const [checkedPostOrComment, setCheckedPostOrComment] = React.useState(false);
   const { posts } = useAppSelector((state) => state.post);
   const { comments } = useAppSelector((state) => state.comment);
   const userId = useAppSelector((state) => state.user.user._id);
-  console.log(userId);
-  console.log(posts);
+  const onClickDeletedPost = (postId: string) => {
+    dispatch(deletedPostAction(postId));
+  };
+  const onClickDeletedComment = (commentId: string) => {
+    dispatch(deleteCommentAction(commentId));
+  };
 
   const dispatch = useDispatch();
 
@@ -106,6 +111,7 @@ const SectionMyProfile: React.FC = () => {
                       {userId === post.user?._id ? (
                         <>
                           <FontAwesomeIcon
+                          onClick={()=>onClickDeletedPost(post._id)}
                             icon={faTrashCan}
                             className={
                               (styles.container_div_sub_div_icon,
@@ -160,10 +166,12 @@ const SectionMyProfile: React.FC = () => {
                     <div className={styles.container_div_sub_div}>
                       <FontAwesomeIcon icon={faEye} />
                       <span className={styles.container_div_sub_div_span}>
-                        {Math.floor(Math.random() * 101)}
+                        {comment.__v}
                       </span>
                       {comment.user._id === userId ? (
                         <FontAwesomeIcon
+                        onClick={()=>onClickDeletedComment(comment._id)}
+                    
                           icon={faTrashCan}
                           className={
                             (styles.container_div_sub_div_icon,
